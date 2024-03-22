@@ -28,3 +28,31 @@ Her Itch.io: https://the-saver1.itch.io/
 
 Her Twitter: https://twitter.com/The_saver1
 
+# Minimum Viable Product
+The core of the game. Very important that we get this right. What's the
+smallest thing we could possibly make that could still gives us useful
+data.
+
+I figured that the a minimum viable product for a dungeon crawler would be
+this: 
+
+* A small room with the player inside.
+* The player would be able to move around with step-movement and the
+player could only turn 90 degrees.
+* An array would be used to track the player's location and to implement
+collisions.
+
+That's for the field gameplay, as for the battle system it would be a 
+little more complicated.
+
+* When a battle begins, I'm thinking that the area will slightly darken,
+and the enemies will appear in the middle of the screen.
+* The most often way a battle will begin would be though random 
+encounters.
+* There would be a battle manager that would be responsible for a number
+of things like: Who's turn it is, who won the battle, and what to do
+depending on who won.
+* The only option the player would have would be "Attack".
+
+So yeah, that's it. If we could get this right, we would be free to expand
+upon it later.
