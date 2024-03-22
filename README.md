@@ -28,6 +28,21 @@ Her Itch.io: https://the-saver1.itch.io/
 
 Her Twitter: https://twitter.com/The_saver1
 
+# File Structure
+This is the general idea of the project's file structure. Please note that
+the names given in the file tree are not accurate.
+
+
+```
+Root
+├─── Graphics
+│    ├─── Models
+│    ├─── Sprites
+│    └─── Textures
+├─── Header Files
+└─── Source Code
+```
+
 # Minimum Viable Product
 The core of the game. Very important that we get this right. What's the
 smallest thing we could possibly make that could still gives us useful
