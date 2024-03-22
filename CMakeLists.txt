@@ -10,7 +10,9 @@ include_directories("include")
 
 add_executable("game"
 src/main.cpp
+src/field_player.cpp
 include/constants.h
+include/field_player.h
 )
 
 target_compile_options("game" PRIVATE --debug -O0)
