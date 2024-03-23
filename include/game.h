@@ -17,6 +17,15 @@ struct Game {
 
   void update();
   void draw();
+  
+  void titleUpdate();
+  void titleDraw();
+
+  void fieldUpdate();
+  void fieldDraw();
+
+  void battleUpdate();
+  void battleDraw();
 
   uint8_t game_state;
 

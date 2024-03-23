@@ -13,6 +13,9 @@ src/main.cpp
 src/game.cpp
 src/field_player.cpp
 src/level.cpp
+src/scenes/title_scene.cpp
+src/scenes/field_scene.cpp
+src/scenes/battle_scene.cpp
 include/constants.h
 include/game.h
 include/field_player.h

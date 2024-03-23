@@ -1,4 +1,4 @@
-//game.cpp
+// game.cpp
 #include <iostream>
 #include <memory>
 #include <raylib.h>
@@ -22,9 +22,11 @@ Game::~Game() {
   cleanupGameObjects();
 
   if (level != nullptr) {
-    cout << "Deleted the level from memory.\n";
     level.reset();
+    cout << "Deleted the level from memory.\n";
   }
+
+  cout << "Thanks for playing!\n";
 }
 
 void Game::setupGameObjects() {
@@ -38,4 +40,40 @@ void Game::cleanupGameObjects() {
     field_player.reset();
     cout << "Deleted field_player from memory.\n";
   }
+}
+
+void Game::update() {
+  switch (game_state) {
+    case TITLE: {
+      titleUpdate();
+      break;
+    }
+    case FIELD: {
+      fieldUpdate();
+      break;
+    }
+    case BATTLE: {
+      battleUpdate();
+      break;
+    }
+  }
+}
+
+void Game::draw() {
+  BeginDrawing();
+  switch (game_state) {
+    case TITLE: {
+      titleDraw();
+      break;
+    }
+    case FIELD: {
+      fieldDraw();
+      break;
+    }
+    case BATTLE: {
+      fieldDraw();
+      battleDraw();
+    }
+  }
+  EndDrawing();
 }
