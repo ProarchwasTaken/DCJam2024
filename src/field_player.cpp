@@ -66,6 +66,9 @@ void FieldPlayer::rotation() {
   if (rotation_complete) {
     rotating = false;
     direction = direction % 360;
+    if (direction < 0) {
+      direction = 360 - (direction * -1);
+    }
     current_angle = direction;
   }
 }
@@ -80,6 +83,12 @@ void FieldPlayer::inputCheck() {
   bool turningLeft = IsKeyDown(KEY_A) && is_idle;
   if (turningLeft) {
     direction += 90;
+    rotating = true;
+  }
+
+  bool lookingBehind = IsKeyDown(KEY_S) && is_idle;
+  if (lookingBehind) {
+    direction += 180;
     rotating = true;
   }
 
