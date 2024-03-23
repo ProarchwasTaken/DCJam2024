@@ -14,6 +14,9 @@ int main() {
 
   cout << "Everything is good to go! Starting main loop.\n";
   while (WindowShouldClose() == false) {
+    if (IsKeyPressed(KEY_F11)) {
+      ToggleFullscreen();
+    }
     game.update();
     game.draw();
   }
