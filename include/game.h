@@ -30,6 +30,7 @@ public:
 
 private:
   uint8_t game_state;
+  double delta_time;
 
   unique_ptr<Level> level;
   unique_ptr<FieldPlayer> field_player;

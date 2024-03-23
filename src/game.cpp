@@ -43,6 +43,7 @@ void Game::cleanupGameObjects() {
 }
 
 void Game::update() {
+  delta_time = GetFrameTime() * TARGET_FPS;
   switch (game_state) {
     case TITLE: {
       titleUpdate();

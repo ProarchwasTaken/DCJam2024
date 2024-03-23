@@ -4,7 +4,8 @@
 
 
 void Game::fieldUpdate() {
-
+  field_player->inputCheck();
+  field_player->update(delta_time);
 }
 
 void Game::fieldDraw() {
@@ -13,4 +14,7 @@ void Game::fieldDraw() {
     level->draw();
   }
   EndMode3D();
+
+  DrawText(TextFormat("Direction: %03i", field_player->direction), 10, 10,
+           32, WHITE);
 }
