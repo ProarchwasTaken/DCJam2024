@@ -16,5 +16,9 @@ void Game::fieldDraw() {
   EndMode3D();
 
   DrawText(TextFormat("Direction: %03i", field_player->direction), 10, 10,
-           32, WHITE);
+           32, GREEN);
+  DrawText(TextFormat("Target X: %02f", field_player->camera.target.x), 
+           10, 40, 32, GREEN);
+  DrawText(TextFormat("Target Y: %02f", field_player->camera.target.z),
+           10, 70, 32, GREEN);
 }

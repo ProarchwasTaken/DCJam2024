@@ -21,10 +21,10 @@ FieldPlayer::FieldPlayer() {
 }
 
 void FieldPlayer::setUpCamera() {
-  camera.position = (Vector3){0.5f, 0.5f, -0.5f};
+  camera.position = (Vector3){0.0f, 0.5f, -0.5f};
   camera.up = (Vector3){0, 1, 0};
   camera.fovy = 60;
-  camera.target = (Vector3){0.6f, 0.5f, -0.5f};
+  camera.target = (Vector3){0.5f, 0.5f, -0.5f};
   camera.projection = CAMERA_PERSPECTIVE;
 
 }
@@ -54,11 +54,11 @@ void FieldPlayer::movement(double &delta_time) {
 
 void FieldPlayer::rotation() {
   if (direction > current_angle) {
-    CameraYaw(&camera, ROTO_SPEED * DEG2RAD, false);
+    CameraYaw(&camera, ROTO_SPEED * DEG2RAD, true);
     current_angle += ROTO_SPEED;
   }
   else if (direction < current_angle) {
-    CameraYaw(&camera, -ROTO_SPEED * DEG2RAD, false);
+    CameraYaw(&camera, -ROTO_SPEED * DEG2RAD, true);
     current_angle -= ROTO_SPEED;
   }
 
