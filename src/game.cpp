@@ -1,0 +1,79 @@
+// game.cpp
+#include <iostream>
+#include <memory>
+#include <raylib.h>
+#include "constants.h"
+#include "game.h"
+#include "level.h"
+#include "field_player.h"
+
+using std::cout, std::make_unique;
+
+
+Game::Game() {
+  game_state = TITLE;
+
+  level = make_unique<Level>();
+  setupGameObjects();
+}
+
+Game::~Game() {
+  cout << "Program termination detected.\n";
+  cleanupGameObjects();
+
+  if (level != nullptr) {
+    level.reset();
+    cout << "Deleted the level from memory.\n";
+  }
+
+  cout << "Thanks for playing!\n";
+}
+
+void Game::setupGameObjects() {
+  cout << "Setting up game objects.\n";
+  field_player = make_unique<FieldPlayer>();
+}
+
+void Game::cleanupGameObjects() {
+  cout << "Cleaning up game objects.\n";
+  if (field_player != nullptr) {
+    field_player.reset();
+    cout << "Deleted field_player from memory.\n";
+  }
+}
+
+void Game::update() {
+  switch (game_state) {
+    case TITLE: {
+      titleUpdate();
+      break;
+    }
+    case FIELD: {
+      fieldUpdate();
+      break;
+    }
+    case BATTLE: {
+      battleUpdate();
+      break;
+    }
+  }
+}
+
+void Game::draw() {
+  BeginDrawing();
+  switch (game_state) {
+    case TITLE: {
+      titleDraw();
+      break;
+    }
+    case FIELD: {
+      fieldDraw();
+      break;
+    }
+    case BATTLE: {
+      fieldDraw();
+      battleDraw();
+    }
+  }
+  EndDrawing();
+}
