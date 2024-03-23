@@ -10,9 +10,11 @@ include_directories("include")
 
 add_executable("game"
 src/main.cpp
+src/game.cpp
 src/field_player.cpp
 src/level.cpp
 include/constants.h
+include/game.h
 include/field_player.h
 include/level.h
 )
