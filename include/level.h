@@ -13,6 +13,10 @@ public:
 
 private:
   Model model;
+  Vector3 position;
+  Vector3 roto_axis;
+  float angle;
+  Vector3 scale;
 
   Texture floor_texture;
   Texture wall_texture;

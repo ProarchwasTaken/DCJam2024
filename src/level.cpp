@@ -4,6 +4,10 @@
 
 
 Level::Level() {
+  position = (Vector3){0, 0, 0};
+  roto_axis = (Vector3){0, 1, 0};
+  angle = -90;
+  scale = (Vector3){1, 1, 1};
   setupModel();
 }
 
@@ -27,5 +31,5 @@ void Level::setupModel() {
 }
 
 void Level::draw() {
-  DrawModel(model, (Vector3){0, 0, 0}, 1, WHITE);
+  DrawModelEx(model, position, roto_axis, angle, scale, WHITE);
 }
