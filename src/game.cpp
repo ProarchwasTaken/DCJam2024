@@ -61,6 +61,7 @@ void Game::update() {
 
 void Game::draw() {
   BeginDrawing();
+  ClearBackground(BLACK);
   switch (game_state) {
     case TITLE: {
       titleDraw();
