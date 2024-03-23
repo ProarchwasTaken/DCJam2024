@@ -9,6 +9,7 @@
 using std::unique_ptr;
 
 struct Game {
+public:
   Game();
   ~Game();
 
@@ -27,6 +28,7 @@ struct Game {
   void battleUpdate();
   void battleDraw();
 
+private:
   uint8_t game_state;
 
   unique_ptr<Level> level;
