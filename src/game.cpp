@@ -43,6 +43,7 @@ void Game::cleanupGameObjects() {
 }
 
 void Game::update() {
+  delta_time = GetFrameTime() * TARGET_FPS;
   switch (game_state) {
     case TITLE: {
       titleUpdate();
@@ -61,6 +62,7 @@ void Game::update() {
 
 void Game::draw() {
   BeginDrawing();
+  ClearBackground(BLACK);
   switch (game_state) {
     case TITLE: {
       titleDraw();

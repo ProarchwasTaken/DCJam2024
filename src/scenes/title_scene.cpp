@@ -11,7 +11,6 @@ void Game::titleUpdate() {
 }
 
 void Game::titleDraw() {
-  ClearBackground(BLACK);
   DrawText("Press Enter to Start.", 48, 280, 64, WHITE);
 }
 
