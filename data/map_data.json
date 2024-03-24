@@ -4,8 +4,8 @@
  "layers":[
         {
          "data":[2, 2, 2, 2, 2, 0, 0,
-            2, 3, 0, 0, 2, 2, 2,
-            2, 0, 0, 0, 0, 0, 2,
+            2, 0, 0, 0, 2, 2, 2,
+            2, 0, 3, 0, 0, 0, 2,
             2, 0, 0, 0, 2, 0, 2,
             2, 2, 0, 2, 2, 0, 2,
             0, 2, 0, 0, 0, 0, 2,
@@ -30,7 +30,7 @@
         {
          "columns":4,
          "firstgid":1,
-         "image":"tileset.png",
+         "image":"..\/..\/..\/OneDrive\/Pictures\/DCJam2024\/map\/tileset.png",
          "imageheight":4,
          "imagewidth":4,
          "margin":0,
