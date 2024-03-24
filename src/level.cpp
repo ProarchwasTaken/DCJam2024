@@ -56,7 +56,8 @@ void Level::loadLevelGrid() {
     level_grid[y][x] = value;
     x++;
 
-    if (x % MAP_WIDTH == 0) {
+    bool reached_end_of_row = x % MAP_WIDTH == 0;
+    if (reached_end_of_row) {
       x = 0;
       y++;
     }
