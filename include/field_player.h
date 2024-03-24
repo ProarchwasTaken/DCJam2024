@@ -7,7 +7,7 @@
 #define SOUTH 180
 #define WEST 270
 
-#define ROTO_SPEED 2.5
+#define ROTO_SPEED 5
 #define MOVE_SECONDS 0.5
 
 class FieldPlayer {
