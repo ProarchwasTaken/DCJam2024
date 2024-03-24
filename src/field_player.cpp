@@ -75,25 +75,23 @@ void FieldPlayer::rotation() {
 
 void FieldPlayer::inputCheck() {
   bool turningRight = IsKeyDown(KEY_D) && is_idle;
+  bool turningLeft = IsKeyDown(KEY_A) && is_idle;
+  bool lookingBehind = IsKeyDown(KEY_S) && is_idle;
+  bool movingForward = IsKeyDown(KEY_W) && is_idle;
+
   if (turningRight) {
     direction -= 90;
     rotating = true;
   }
-
-  bool turningLeft = IsKeyDown(KEY_A) && is_idle;
-  if (turningLeft) {
+  else if (turningLeft) {
     direction += 90;
     rotating = true;
   }
-
-  bool lookingBehind = IsKeyDown(KEY_S) && is_idle;
-  if (lookingBehind) {
+  else if (lookingBehind) {
     direction += 180;
     rotating = true;
   }
-
-  bool movingForward = IsKeyDown(KEY_W) && is_idle;
-  if (movingForward) {
+  else if (movingForward) {
     moving = true;
   }
 }
