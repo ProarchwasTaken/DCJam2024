@@ -9,6 +9,7 @@ using std::array;
 #define MAP_HEIGHT 7
 #define TOTAL_TILES (MAP_WIDTH * MAP_HEIGHT)
 
+#define NOTHING 0
 #define SOLID_WALL 2
 #define PLAYER_SPAWN 3
 
