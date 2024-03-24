@@ -11,7 +11,7 @@ using std::array;
 
 #define NOTHING 0
 #define SOLID_WALL 2
-#define PLAYER_SPAWN 3
+#define PLAYER 3
 
 typedef array<array<int, MAP_WIDTH>, MAP_HEIGHT> lv_array;
 
