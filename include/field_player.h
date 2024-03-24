@@ -1,6 +1,9 @@
 // field_player.h
 #pragma once
 #include <raylib.h>
+#include <array>
+#include "level.h"
+using std::array;
 
 #define NORTH 0
 #define EAST 90
@@ -10,9 +13,11 @@
 #define ROTO_SPEED 5
 #define MOVE_SECONDS 0.5
 
+
 class FieldPlayer {
 public:
-  FieldPlayer();
+  FieldPlayer(lv_array &level_grid);
+  void setSpawnPosition();
   void setUpCamera();
 
   void update(double &delta_time);
@@ -28,6 +33,8 @@ public:
   int moving;
   bool is_idle;
 private:
+  lv_array *level_grid;
+
   float current_angle;
   Vector2 position;
 

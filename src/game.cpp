@@ -31,7 +31,7 @@ Game::~Game() {
 
 void Game::setupGameObjects() {
   cout << "Setting up game objects.\n";
-  field_player = make_unique<FieldPlayer>();
+  field_player = make_unique<FieldPlayer>(level->level_grid);
 }
 
 void Game::cleanupGameObjects() {

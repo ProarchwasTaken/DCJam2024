@@ -2,11 +2,13 @@
 #include <raylib.h>
 #include <raymath.h>
 #include <rcamera.h>
+#include "level.h"
 #include "field_player.h"
 
 
-FieldPlayer::FieldPlayer() {
-  position = (Vector2){1, 1};
+FieldPlayer::FieldPlayer(lv_array &level_grid) {
+  this->level_grid = &level_grid;
+  setSpawnPosition();
 
   is_idle = true;
   rotating = false;
@@ -20,11 +22,25 @@ FieldPlayer::FieldPlayer() {
   setUpCamera();
 }
 
+void FieldPlayer::setSpawnPosition() {
+  for (int y = 0; y < MAP_HEIGHT; y++) {
+    for (int x = 0; x < MAP_WIDTH; x++) {
+      int value = level_grid->at(y).at(x);
+      int found_player_spawn = value == PLAYER;
+
+      if (found_player_spawn) {
+        position.x = x;
+        position.y = y;
+      }
+    }
+  }
+}
+
 void FieldPlayer::setUpCamera() {
-  camera.position = (Vector3){1.5f, 0.5f, 1.0f};
+  camera.position = (Vector3){position.x + 0.5f, 0.5f, position.y};
   camera.up = (Vector3){0, 1, 0};
   camera.fovy = 60;
-  camera.target = (Vector3){1.5f, 0.5f, 1.5f};
+  camera.target = (Vector3){position.x + 0.5f, 0.5f, position.y + 0.5f};
   camera.projection = CAMERA_PERSPECTIVE;
 
 }
