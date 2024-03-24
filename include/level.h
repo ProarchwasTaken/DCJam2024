@@ -15,6 +15,10 @@ using std::array;
 
 typedef array<array<int, MAP_WIDTH>, MAP_HEIGHT> lv_array;
 
+
+/* The game's map consists of the model itself, and the level array which
+ * is used for collision for the FieldPlayer. Both of which are loaded 
+ * from external files.*/
 class Level {
 public:
   Level();
@@ -22,7 +26,7 @@ public:
 
   lv_array level_grid;
 
-  void loadLevelGrid();
+  void setupLevelGrid();
   void printLevelGrid();
   array<int, TOTAL_TILES> getRawGrid();
 

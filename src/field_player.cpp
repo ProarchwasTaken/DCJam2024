@@ -22,6 +22,8 @@ FieldPlayer::FieldPlayer(lv_array &level_grid) {
   setUpCamera();
 }
 
+/* Called on initialization. Searches the level_grid for it's spawning
+ * position and sets it's position to that.*/
 void FieldPlayer::setSpawnPosition() {
   for (int y = 0; y < MAP_HEIGHT; y++) {
     for (int x = 0; x < MAP_WIDTH; x++) {
@@ -36,6 +38,9 @@ void FieldPlayer::setSpawnPosition() {
   }
 }
 
+/* For setting up the game's camera in order for 3D mode to work.
+ * The camera's position and target depends on the player's position.
+ * Albeit with some modifications.*/
 void FieldPlayer::setUpCamera() {
   camera.position = (Vector3){position.x + 0.5f, 0.5f, position.y};
   camera.up = (Vector3){0, 1, 0};
@@ -52,6 +57,9 @@ void FieldPlayer::update() {
   if (rotating) rotation();
 }
 
+/* Called each frame of which the player should be moving forward. 
+ * Basically, the camera will move forward based on a percentage 
+ * difference. The player stops moving when the percentage reaches 100*/
 void FieldPlayer::movement() {
   float new_percentage = move_percentage + GetFrameTime() / MOVE_SECONDS;
   new_percentage = Clamp(new_percentage, 0.0, 1.0);
@@ -68,6 +76,10 @@ void FieldPlayer::movement() {
   }
 }
 
+/* Called each frame of which the camera should be rotating. The camera
+ * will turn left or right depending on if current_angle is lower or
+ * higher than direction. The camera should stop rotating when both values
+ * are equal.*/
 void FieldPlayer::rotation() {
   if (direction > current_angle) {
     CameraYaw(&camera, ROTO_SPEED * DEG2RAD, true);
@@ -90,28 +102,30 @@ void FieldPlayer::rotation() {
 }
 
 void FieldPlayer::inputCheck() {
-  bool turningRight = IsKeyDown(KEY_D) && is_idle;
-  bool turningLeft = IsKeyDown(KEY_A) && is_idle;
-  bool lookingBehind = IsKeyDown(KEY_S) && is_idle;
-  bool movingForward = IsKeyDown(KEY_W) && is_idle;
+  bool turning_right = IsKeyDown(KEY_D) && is_idle;
+  bool turning_left = IsKeyDown(KEY_A) && is_idle;
+  bool looking_behind = IsKeyDown(KEY_S) && is_idle;
+  bool moving_forward = IsKeyDown(KEY_W) && is_idle;
 
-  if (turningRight) {
+  if (turning_right) {
     direction -= 90;
     rotating = true;
   }
-  else if (turningLeft) {
+  else if (turning_left) {
     direction += 90;
     rotating = true;
   }
-  else if (lookingBehind) {
+  else if (looking_behind) {
     direction += 180;
     rotating = true;
   }
-  else if (movingForward && canMove()) {
+  else if (moving_forward && canMove()) {
     moving = true;
   }
 }
 
+/* Used for checking if the player could move forward or not. Should be
+ * called whenever the player attempts to move forward.*/
 bool FieldPlayer::canMove() {
   Vector2 offset;
 

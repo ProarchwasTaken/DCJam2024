@@ -23,6 +23,9 @@ namespace ADJACENT {
 }
 
 
+/* The FieldPlayer is a game object that's controlled by the user for
+ * field gameplay. It's able of turning left and right and moving in only 
+ * one direction. Uses the level_grid for collisions.*/
 class FieldPlayer {
 public:
   FieldPlayer(lv_array &level_grid);
@@ -30,6 +33,7 @@ public:
   void setUpCamera();
 
   void update();
+
   void inputCheck();
 
   void rotation();

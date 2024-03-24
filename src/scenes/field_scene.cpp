@@ -5,7 +5,7 @@
 
 void Game::fieldUpdate() {
   field_player->inputCheck();
-  field_player->update(delta_time);
+  field_player->update();
 }
 
 void Game::fieldDraw() {

@@ -6,6 +6,7 @@
 
 void Game::titleUpdate() {
   if (IsKeyPressed(KEY_ENTER)) {
+    setupGameObjects();
     game_state = FIELD;
   }
 }

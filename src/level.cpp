@@ -15,10 +15,13 @@ Level::Level() {
   roto_axis = (Vector3){0, 1, 0};
   angle = -90;
   scale = (Vector3){1, 1, 1};
+
   setupModel();
-  loadLevelGrid();
+  setupLevelGrid();
 }
 
+/* Destructor should only be called when the program terminates.
+ * Otherwise, something has clearly gone wrong.*/
 Level::~Level() {
   UnloadModel(model);
   UnloadTexture(floor_texture);
@@ -26,6 +29,9 @@ Level::~Level() {
   UnloadTexture(ceiling_texture);
 }
 
+/* For getting the collision array from map_data.json and return it.
+ * The returned array is only one dimensional, so it have have to be
+ * converted into a 2D array so it could be usable.*/
 array<int, TOTAL_TILES> Level::getRawGrid() {
   string data_path = "./data/map_data.json";
 
@@ -39,7 +45,10 @@ array<int, TOTAL_TILES> Level::getRawGrid() {
   return raw_data;
 }
 
-void Level::loadLevelGrid() {
+/* The level grid is important for detecting collisions and making sure
+ * the player doesn't get out of the map. Setting it up is what this
+ * function is for.*/
+void Level::setupLevelGrid() {
   cout << "==========================\n";
   cout << "Loading Level Data...\n";
   cout << "Map Width: " << MAP_WIDTH << "\n";
@@ -51,7 +60,7 @@ void Level::loadLevelGrid() {
   int x = 0;
   int y = 0;
 
-  cout << "Reshaping raw array into a 2D one.\n";
+  cout << "Reshaping raw array into a 2D array.\n";
   for (int value : raw_data) {
     level_grid[y][x] = value;
     x++;
@@ -66,6 +75,8 @@ void Level::loadLevelGrid() {
   printLevelGrid();
 }
 
+/* This function is purly for debugging purposes, and it should not be 
+ * used for anything else.*/
 void Level::printLevelGrid() {
   cout << "Level Grid\n";
   cout << "==========================\n";
@@ -79,6 +90,10 @@ void Level::printLevelGrid() {
   cout << "==========================\n";
 }
 
+/* For loading the game's model and mapping all of it's textures to it.
+ * There's a reason why the Level class is only initialized once during
+ * the program's lifetime. I figured constantly reloading the same model
+ * is a waste of time.*/
 void Level::setupModel() {
   floor_texture = LoadTexture("graphics/textures/floor1.png");
   ceiling_texture = LoadTexture("graphics/textures/ceiling1.png");

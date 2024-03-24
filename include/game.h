@@ -8,6 +8,8 @@
 
 using std::unique_ptr;
 
+/* The structure of the game as a whole. Some member functions are defined
+ * in different files.*/
 struct Game {
 public:
   Game();
@@ -16,7 +18,10 @@ public:
   void setupGameObjects();
   void cleanupGameObjects();
 
+  /* Called one every frame. Different functions will be called depending
+   * on the current game_state.*/
   void update();
+  /* Functions the same as the update function.*/
   void draw();
   
   void titleUpdate();
