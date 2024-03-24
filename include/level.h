@@ -9,13 +9,17 @@ using std::array;
 #define MAP_HEIGHT 7
 #define TOTAL_TILES (MAP_WIDTH * MAP_HEIGHT)
 
+#define SOLID_WALL 2
+#define PLAYER_SPAWN 3
+
+typedef array<array<int, MAP_WIDTH>, MAP_HEIGHT> lv_array;
 
 class Level {
 public:
   Level();
   ~Level();
 
-  array<array<int, MAP_WIDTH>, MAP_HEIGHT> level_grid;
+  lv_array level_grid;
 
   void loadLevelGrid();
   void printLevelGrid();
