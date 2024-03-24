@@ -2,11 +2,13 @@
 #include <raylib.h>
 #include <raymath.h>
 #include <rcamera.h>
+#include "level.h"
 #include "field_player.h"
 
 
-FieldPlayer::FieldPlayer() {
-  position = (Vector2){1, 1};
+FieldPlayer::FieldPlayer(lv_array &level_grid) {
+  this->level_grid = &level_grid;
+  setSpawnPosition();
 
   is_idle = true;
   rotating = false;
@@ -20,11 +22,25 @@ FieldPlayer::FieldPlayer() {
   setUpCamera();
 }
 
+void FieldPlayer::setSpawnPosition() {
+  for (int y = 0; y < MAP_HEIGHT; y++) {
+    for (int x = 0; x < MAP_WIDTH; x++) {
+      int value = level_grid->at(y).at(x);
+      int found_player_spawn = value == PLAYER;
+
+      if (found_player_spawn) {
+        position.x = x;
+        position.y = y;
+      }
+    }
+  }
+}
+
 void FieldPlayer::setUpCamera() {
-  camera.position = (Vector3){1.5f, 0.5f, 1.0f};
+  camera.position = (Vector3){position.x + 0.5f, 0.5f, position.y};
   camera.up = (Vector3){0, 1, 0};
   camera.fovy = 60;
-  camera.target = (Vector3){1.5f, 0.5f, 1.5f};
+  camera.target = (Vector3){position.x + 0.5f, 0.5f, position.y + 0.5f};
   camera.projection = CAMERA_PERSPECTIVE;
 
 }
@@ -75,26 +91,57 @@ void FieldPlayer::rotation() {
 
 void FieldPlayer::inputCheck() {
   bool turningRight = IsKeyDown(KEY_D) && is_idle;
+  bool turningLeft = IsKeyDown(KEY_A) && is_idle;
+  bool lookingBehind = IsKeyDown(KEY_S) && is_idle;
+  bool movingForward = IsKeyDown(KEY_W) && is_idle;
+
   if (turningRight) {
     direction -= 90;
     rotating = true;
   }
-
-  bool turningLeft = IsKeyDown(KEY_A) && is_idle;
-  if (turningLeft) {
+  else if (turningLeft) {
     direction += 90;
     rotating = true;
   }
-
-  bool lookingBehind = IsKeyDown(KEY_S) && is_idle;
-  if (lookingBehind) {
+  else if (lookingBehind) {
     direction += 180;
     rotating = true;
   }
-
-  bool movingForward = IsKeyDown(KEY_W) && is_idle;
-  if (movingForward) {
+  else if (movingForward && canMove()) {
     moving = true;
   }
 }
 
+bool FieldPlayer::canMove() {
+  Vector2 offset;
+
+  switch (direction) {
+    case EAST: {
+      offset = ADJACENT::RIGHT;
+      break;
+    }
+    case SOUTH: {
+      offset = ADJACENT::DOWN;
+      break;
+    }
+    case WEST: {
+      offset = ADJACENT::LEFT;
+      break;
+    }
+    case NORTH: {
+      offset = ADJACENT::UP;
+      break;
+    }
+  }
+
+  Vector2 new_pos = Vector2Add(position, offset);
+  int tile_value = level_grid->at(new_pos.y).at(new_pos.x);
+
+  if (tile_value != SOLID_WALL) {
+    position = new_pos;
+    return true;
+  }
+  else {
+    return false;
+  }
+}

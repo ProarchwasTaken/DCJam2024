@@ -1,0 +1,47 @@
+{ "compressionlevel":-1,
+ "height":7,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[2, 2, 2, 2, 2, 0, 0,
+            2, 0, 0, 0, 2, 2, 2,
+            2, 0, 3, 0, 0, 0, 2,
+            2, 0, 0, 0, 2, 0, 2,
+            2, 2, 0, 2, 2, 0, 2,
+            0, 2, 0, 0, 0, 0, 2,
+            0, 2, 2, 2, 2, 2, 2],
+         "height":7,
+         "id":1,
+         "name":"Collisions",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":7,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":3,
+ "nextobjectid":4,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.10.2",
+ "tileheight":1,
+ "tilesets":[
+        {
+         "columns":4,
+         "firstgid":1,
+         "image":"..\/..\/..\/OneDrive\/Pictures\/DCJam2024\/map\/tileset.png",
+         "imageheight":4,
+         "imagewidth":4,
+         "margin":0,
+         "name":"tileset",
+         "spacing":0,
+         "tilecount":16,
+         "tileheight":1,
+         "tilewidth":1
+        }],
+ "tilewidth":1,
+ "type":"map",
+ "version":"1.10",
+ "width":7
+}
