@@ -107,8 +107,41 @@ void FieldPlayer::inputCheck() {
     direction += 180;
     rotating = true;
   }
-  else if (movingForward) {
+  else if (movingForward && canMove()) {
     moving = true;
   }
 }
 
+bool FieldPlayer::canMove() {
+  Vector2 offset;
+
+  switch (direction) {
+    case EAST: {
+      offset = ADJACENT::RIGHT;
+      break;
+    }
+    case SOUTH: {
+      offset = ADJACENT::DOWN;
+      break;
+    }
+    case WEST: {
+      offset = ADJACENT::LEFT;
+      break;
+    }
+    case NORTH: {
+      offset = ADJACENT::UP;
+      break;
+    }
+  }
+
+  Vector2 new_pos = Vector2Add(position, offset);
+  int tile_value = level_grid->at(new_pos.y).at(new_pos.x);
+
+  if (tile_value != SOLID_WALL) {
+    position = new_pos;
+    return true;
+  }
+  else {
+    return false;
+  }
+}
