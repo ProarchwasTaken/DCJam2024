@@ -29,11 +29,11 @@ public:
   void setSpawnPosition();
   void setUpCamera();
 
-  void update(double &delta_time);
+  void update();
   void inputCheck();
 
   void rotation();
-  void movement(double &delta_time);
+  void movement();
   bool canMove();
 
   Camera camera;

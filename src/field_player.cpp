@@ -45,14 +45,14 @@ void FieldPlayer::setUpCamera() {
 
 }
 
-void FieldPlayer::update(double &delta_time) {
+void FieldPlayer::update() {
   is_idle = !moving && !rotating;
 
-  if (moving) movement(delta_time);
+  if (moving) movement();
   if (rotating) rotation();
 }
 
-void FieldPlayer::movement(double &delta_time) {
+void FieldPlayer::movement() {
   float new_percentage = move_percentage + GetFrameTime() / MOVE_SECONDS;
   new_percentage = Clamp(new_percentage, 0.0, 1.0);
 
