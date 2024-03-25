@@ -9,11 +9,19 @@ void Game::fieldUpdate() {
 }
 
 void Game::fieldDraw() {
-  BeginMode3D(field_player->camera);
+  BeginTextureMode(canvas3D);
   {
-    level->draw();
+    ClearBackground(WHITE);
+    BeginMode3D(field_player->camera);
+    {
+      level->draw();
+    }
+    EndMode3D();
   }
-  EndMode3D();
+  EndTextureMode();
+
+  hud->draw();
+  DrawTexturePro(canvas3D.texture, source, dest, origin, 0, WHITE);
 
   DrawText(TextFormat("Direction: %03i", field_player->direction), 10, 10,
            32, GREEN);

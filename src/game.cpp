@@ -13,7 +13,13 @@ using std::cout, std::make_unique;
 Game::Game() {
   game_state = TITLE;
 
+  canvas3D = LoadRenderTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
+  source = {0, 0, WINDOW_WIDTH, -WINDOW_HEIGHT};
+  dest = {CANVAS_X, CANVAS_Y, CANVAS_WIDTH, CANVAS_HEIGHT};
+  origin = {0, 0};
+
   level = make_unique<Level>();
+  hud = make_unique<Hud>();
 }
 
 /* The destructor should only be called when the program is about to
@@ -22,9 +28,15 @@ Game::~Game() {
   cout << "Program termination detected.\n";
   cleanupGameObjects();
 
+  UnloadRenderTexture(canvas3D);
+
   if (level != nullptr) {
     level.reset();
     cout << "Deleted the level from memory.\n";
+  }
+  if (hud != nullptr) {
+    hud.reset();
+    cout << "Deleted the hud from memory.\n";
   }
 
   cout << "Thanks for playing!\n";

@@ -13,6 +13,7 @@ src/main.cpp
 src/game.cpp
 src/field_player.cpp
 src/level.cpp
+src/hud.cpp
 src/scenes/title_scene.cpp
 src/scenes/field_scene.cpp
 src/scenes/battle_scene.cpp
@@ -20,6 +21,7 @@ include/constants.h
 include/game.h
 include/field_player.h
 include/level.h
+include/hud.h
 )
 
 target_compile_options("game" PRIVATE --debug -O0)
