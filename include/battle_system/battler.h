@@ -4,10 +4,7 @@
 #include <memory>
 #include <list>
 
-using std::string, std::list, std::unique_ptr;
-
-#define PARTY_MEMBER 0
-#define ENEMY 1
+using std::string, std::list, std::shared_ptr;
 
 
 struct Battler {
@@ -15,7 +12,11 @@ struct Battler {
     string name, int type, int max_hp, int max_sp, int atk, int def, 
     int agi 
   );
+
+  const char *getStatusString();
+
   string name;
+  int status;
   int type;
   bool dead;
 
@@ -30,4 +31,4 @@ struct Battler {
   int agility;
 };
 
-typedef list<unique_ptr<Battler>> battler_list;
+typedef list<shared_ptr<Battler>> battler_list;
