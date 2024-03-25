@@ -1,11 +1,14 @@
 // battler.h
 #pragma once
 #include <string>
+#include <memory>
+#include <list>
 
-using std::string;
+using std::string, std::list, std::unique_ptr;
 
 #define PARTY_MEMBER 0
 #define ENEMY 1
+
 
 struct Battler {
   Battler(
@@ -26,3 +29,5 @@ struct Battler {
   int defense;
   int agility;
 };
+
+typedef list<unique_ptr<Battler>> battler_list;
