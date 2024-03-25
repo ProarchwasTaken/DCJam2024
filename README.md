@@ -34,6 +34,7 @@ the names given in the file tree are not accurate.
 
 ```
 Root
+├─── Data
 ├─── Graphics
 │    ├─── Models
 │    ├─── Sprites
