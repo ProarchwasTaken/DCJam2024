@@ -25,6 +25,7 @@ include/game.h
 include/level.h
 include/hud.h
 include/field/field_player.h
+include/battle_system/constants.h
 include/battle_system/battler.h
 include/battle_system/party.h
 include/battle_system/party_members/steve.h
@@ -32,9 +33,6 @@ include/battle_system/party_members/steve.h
 
 target_compile_options("game" PRIVATE --debug -O0)
 target_link_libraries("game" PRIVATE
--static
--static-libgcc 
--static-libstdc++
 -lraylib 
 -lopengl32 
 -lgdi32
