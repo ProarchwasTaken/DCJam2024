@@ -1,10 +1,6 @@
 // party.h
 #pragma once
-#include <vector>
-#include <memory>
 #include "battler.h"
-
-using std::unique_ptr, std::vector;
 
 
 struct Party {
@@ -12,6 +8,7 @@ struct Party {
   ~Party();
 
   bool leaderDead();
+  void overview();
 
   battler_list party_members;
 };

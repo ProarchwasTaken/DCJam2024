@@ -46,6 +46,7 @@ Game::~Game() {
  * Important to make sure all the game's elements are initialized.*/
 void Game::setupGameObjects() {
   cout << "Setting up game objects.\n";
+  player_party = make_unique<Party>();
   field_player = make_unique<FieldPlayer>(level->level_grid);
 }
 
@@ -53,6 +54,10 @@ void Game::setupGameObjects() {
  * like winning or losing the game.*/
 void Game::cleanupGameObjects() {
   cout << "Cleaning up game objects.\n";
+  if (player_party != nullptr) {
+    player_party.reset();
+    cout << "Deleted player_party from memory.\n";
+  }
   if (field_player != nullptr) {
     field_player.reset();
     cout << "Deleted field_player from memory.\n";

@@ -4,6 +4,7 @@
 #include <memory>
 #include <raylib.h>
 #include "level.h"
+#include "battle_system/party.h"
 #include "hud.h"
 #include "field/field_player.h"
 
@@ -49,6 +50,7 @@ private:
   Vector2 origin;
 
   unique_ptr<Level> level;
+  unique_ptr<Party> player_party;
   unique_ptr<Hud> hud;
   unique_ptr<FieldPlayer> field_player;
 };
