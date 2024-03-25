@@ -5,7 +5,7 @@
 #include "constants.h"
 #include "game.h"
 #include "level.h"
-#include "field_player.h"
+#include "field/field_player.h"
 
 using std::cout, std::make_unique;
 

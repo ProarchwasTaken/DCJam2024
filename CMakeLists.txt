@@ -11,17 +11,19 @@ include_directories("include")
 add_executable("game"
 src/main.cpp
 src/game.cpp
-src/field_player.cpp
 src/level.cpp
 src/hud.cpp
 src/scenes/title_scene.cpp
 src/scenes/field_scene.cpp
 src/scenes/battle_scene.cpp
+src/field/field_player.cpp
+src/battle_system/battler.cpp
 include/constants.h
 include/game.h
-include/field_player.h
 include/level.h
 include/hud.h
+include/field/field_player.h
+include/battle_system/battler.h
 )
 
 target_compile_options("game" PRIVATE --debug -O0)
