@@ -47,6 +47,8 @@ Game::~Game() {
 void Game::setupGameObjects() {
   cout << "Setting up game objects.\n";
   player_party = make_unique<Party>();
+  hud->assignPartyList(player_party->party_members);
+
   field_player = make_unique<FieldPlayer>(level->level_grid);
 }
 

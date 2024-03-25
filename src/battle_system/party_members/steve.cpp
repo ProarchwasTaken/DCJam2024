@@ -1,4 +1,5 @@
 // steve.cpp
+#include "battle_system/constants.h"
 #include "battle_system/battler.h"
 #include "battle_system/party_members/steve.h"
 

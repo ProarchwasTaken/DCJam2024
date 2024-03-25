@@ -4,11 +4,13 @@
 #include "battle_system/party.h"
 #include "battle_system/party_members/steve.h"
 
-using std::make_unique, std::cout;
+using std::make_shared, std::cout;
 
 
 Party::Party() {
-  party_members.push_front(make_unique<Steve>());
+  party_members.push_front(make_shared<Steve>());
+  party_members.push_front(make_shared<Steve>());
+  party_members.push_front(make_shared<Steve>());
   overview();
 }
 
