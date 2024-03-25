@@ -94,4 +94,4 @@ door and escape.
 As for battle system, it wouldn't be anything too complicated. Each turn,
 you chose the action of each party member. The order of which participant
 in the battle could act, depends on their Agility stat. Basically the
-battle system would work like the old nes Final Fantasy games, and SMT.
+battle system would work like the old NES Final Fantasy games, and SMT.
