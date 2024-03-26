@@ -2,6 +2,7 @@
 #pragma once
 #include "../battler.h"
 
-struct Steve : public Battler {
+class Steve : public Battler {
+public:
   Steve();
 };
