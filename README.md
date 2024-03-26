@@ -78,19 +78,14 @@ to define our scope. With something as complex as this, it would probably
 be very narrow as this was the first time programming something like this.
 
 The game would be about escaping the ancient ruins after obtaining it's 
-magical artifact. The gameplay would be searching around for chests that
-may contain a key, that allows you to unlock doors to progress. There may
-be extra chests that may contain items, or familiars that may help you in
-battle.
+magical artifact. The ruins are like a maze, and the encounter rate is high
+make this taske more challenging.
 
 The only stats each party member would have is: HP, SP, ATK, AGI, and DEF.
-There would be no equipment or experience, but there could be items that
-temporary buff or debuff stats.
+There would be no equipment or experience.
 
 As for skills, each party member would have a set amount of skills for the
-entire game. The skills could range from dealing damage, buffing stats, or
-healing party members. The game ends once the player unlocks the final
-door and escape.
+entire game. 
 
 As for battle system, it wouldn't be anything too complicated. Each turn,
 you chose the action of each party member. The order of which participant
