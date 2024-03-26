@@ -9,8 +9,6 @@ using std::make_shared, std::cout;
 
 Party::Party() {
   party_members.push_front(make_shared<Steve>());
-  party_members.push_front(make_shared<Steve>());
-  party_members.push_front(make_shared<Steve>());
   overview();
 }
 
