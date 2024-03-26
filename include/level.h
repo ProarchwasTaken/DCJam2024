@@ -31,7 +31,7 @@ public:
   array<int, TOTAL_TILES> getRawGrid();
 
   void setupModel();
-  void draw();
+  void draw(Color tint);
 
 private:
   Model model;
