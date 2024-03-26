@@ -6,6 +6,7 @@
 #include "level.h"
 #include "battle_system/party.h"
 #include "hud.h"
+#include "battle_manager.h"
 #include "field/field_player.h"
 
 using std::unique_ptr;
@@ -30,6 +31,8 @@ public:
   void update();
   /* Functions the same as the update function.*/
   void draw();
+
+  void startBattle();
   
   void titleUpdate();
   void titleDraw();
@@ -48,6 +51,8 @@ private:
   Rectangle source;
   Rectangle dest;
   Vector2 origin;
+
+  unique_ptr<BattleManager> battle_manager;
 
   unique_ptr<Level> level;
   unique_ptr<Party> player_party;

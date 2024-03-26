@@ -6,6 +6,7 @@
 #include "game.h"
 #include "level.h"
 #include "field/field_player.h"
+#include "battle_manager.h"
 
 using std::cout, std::make_unique;
 
@@ -20,6 +21,7 @@ Game::Game() {
 
   level = make_unique<Level>();
   hud = make_unique<Hud>();
+  battle_manager = make_unique<BattleManager>();
 }
 
 /* The destructor should only be called when the program is about to
@@ -38,6 +40,10 @@ Game::~Game() {
     hud.reset();
     cout << "Deleted the hud from memory.\n";
   }
+  if (battle_manager != nullptr) {
+    battle_manager.reset();
+    cout << "Deleted battle manager.\n";
+  }
 
   cout << "Thanks for playing!\n";
 }
@@ -48,6 +54,7 @@ void Game::setupGameObjects() {
   cout << "Setting up game objects.\n";
   player_party = make_unique<Party>();
   hud->assignPartyList(player_party->party_members);
+  battle_manager->assignPartyList(player_party->party_members);
 
   field_player = make_unique<FieldPlayer>(level->level_grid);
 }

@@ -13,6 +13,7 @@ src/main.cpp
 src/game.cpp
 src/level.cpp
 src/hud.cpp
+src/battle_manager.cpp
 src/scenes/title_scene.cpp
 src/scenes/field_scene.cpp
 src/scenes/battle_scene.cpp
@@ -28,6 +29,7 @@ include/constants.h
 include/game.h
 include/level.h
 include/hud.h
+include/battle_manager.h
 include/field/field_player.h
 include/battle_system/constants.h
 include/battle_system/battler.h

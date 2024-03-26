@@ -8,5 +8,5 @@ void Game::battleUpdate() {
 }
 
 void Game::battleDraw() {
-
+  battle_manager->drawEnemies();
 }
