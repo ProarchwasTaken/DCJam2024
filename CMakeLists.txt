@@ -20,6 +20,7 @@ src/field/field_player.cpp
 src/battle_system/battler.cpp
 src/battle_system/enemy.cpp
 src/battle_system/party_members.cpp
+src/battle_system/enemy_troops.cpp
 src/battle_system/party.cpp
 src/battle_system/party_members/steve.cpp
 src/battle_system/enemies/skeleton.cpp
@@ -32,6 +33,7 @@ include/battle_system/constants.h
 include/battle_system/battler.h
 include/battle_system/enemy.h
 include/battle_system/party_members.h
+include/battle_system/enemy_troops.h
 include/battle_system/party.h
 include/battle_system/party_members/steve.h
 include/battle_system/enemies/skeleton.h
