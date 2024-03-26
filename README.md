@@ -20,9 +20,9 @@ this one. At least it would be a good learning experience as I never
 worked with other people on a game before.
 
 # Credits
-**Programmer** - Tyler Dillard - My [Itch.io](https://lorenarc.itch.io/), and [Twitter](https://twitter.com/Tyler37961642)
+**Programmer** - Tyler Dillard - My [Itch.io](https://lorenarc.itch.io/), [Gamejolt](https://gamejolt.com/@LorenArc), and [Twitter](https://twitter.com/Tyler37961642)
 
-**Artist/Designer** - the_saver1 - Her [Itch.io](https://the-saver1.itch.io/), and her [Twitter](https://twitter.com/The_saver1)
+**Artist/Designer** - the_saver1 - Her [Itch.io](https://the-saver1.itch.io/), and [Twitter](https://twitter.com/The_saver1)
 
 # File Structure
 This is the general idea of the project's file structure. Please note that
