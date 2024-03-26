@@ -20,9 +20,9 @@ this one. At least it would be a good learning experience as I never
 worked with other people on a game before.
 
 # Credits
-**Tyler Dillard** - Programmer/Sound and Music Composer
+**Programmer** - Tyler Dillard
 
-**the_saver1** - Artist/Designer
+**Artist/Designer** - the_saver1
 
 Her Itch.io: https://the-saver1.itch.io/
 
