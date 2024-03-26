@@ -1,6 +1,6 @@
 // party.h
 #pragma once
-#include "battler.h"
+#include "party_members.h"
 
 
 struct Party {
@@ -10,5 +10,5 @@ struct Party {
   bool leaderDead();
   void overview();
 
-  battler_list party_members;
+  party_list party_members;
 };

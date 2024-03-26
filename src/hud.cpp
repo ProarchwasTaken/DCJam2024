@@ -1,7 +1,7 @@
 // hud.cpp
 #include <raylib.h>
 #include "hud.h"
-#include "battle_system/battler.h"
+#include "battle_system/party_members.h"
 
 
 Hud::Hud() {
@@ -15,7 +15,7 @@ Hud::~Hud() {
   UnloadTexture(frame);
 }
 
-void Hud::assignPartyList(battler_list &party_members) {
+void Hud::assignPartyList(party_list &party_members) {
   this->party_members = &party_members;
 }
 

@@ -29,4 +29,4 @@ private:
   int current_sprite;
 };
 
-typedef list<shared_ptr<Enemy>> enemy_troop; 
+typedef list<shared_ptr<Enemy>> enemy_list; 

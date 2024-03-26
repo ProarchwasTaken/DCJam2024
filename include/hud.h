@@ -3,7 +3,7 @@
 #include <raylib.h>
 #include <string>
 #include <array>
-#include "battle_system/battler.h"
+#include "battle_system/party_members.h"
 
 using std::string, std::array;
 
@@ -13,7 +13,7 @@ public:
   Hud();
   ~Hud();
 
-  void assignPartyList(battler_list &party_members);
+  void assignPartyList(party_list &party_members);
   void drawPartyText();
   void draw();
 
@@ -23,5 +23,5 @@ private:
   Font main_font;
   int text_spacing;
 
-  battler_list *party_members;
+  party_list *party_members;
 };

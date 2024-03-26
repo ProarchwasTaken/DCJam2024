@@ -1,8 +1,8 @@
 // steve.h
 #pragma once
-#include "../battler.h"
+#include "../party_members.h"
 
-class Steve : public Battler {
+class Steve : public PartyMember {
 public:
   Steve();
 };
