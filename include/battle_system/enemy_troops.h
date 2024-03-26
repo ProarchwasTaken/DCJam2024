@@ -1,9 +1,9 @@
 // enemy_troops.h
+#pragma once
 #include <raylib.h>
-#include <memory>
 #include <list>
 
-using std::unique_ptr, std::list;
+using std::list;
 
 struct EnemyInfo {
   int enemy;
@@ -24,4 +24,8 @@ struct EnemyTroop {
 
 struct TroopOneSkeleton : public EnemyTroop {
   TroopOneSkeleton();
+};
+
+struct TroopTwoSkeleton : public EnemyTroop {
+  TroopTwoSkeleton();
 };
