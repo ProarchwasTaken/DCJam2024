@@ -23,8 +23,10 @@ src/battle_system/enemy.cpp
 src/battle_system/party_members.cpp
 src/battle_system/enemy_troops.cpp
 src/battle_system/party.cpp
+src/battle_system/skill.cpp
 src/battle_system/party_members/steve.cpp
 src/battle_system/enemies/skeleton.cpp
+src/battle_system/skills/attack.cpp
 include/constants.h
 include/game.h
 include/level.h
@@ -37,8 +39,10 @@ include/battle_system/enemy.h
 include/battle_system/party_members.h
 include/battle_system/enemy_troops.h
 include/battle_system/party.h
+include/battle_system/skill.h
 include/battle_system/party_members/steve.h
 include/battle_system/enemies/skeleton.h
+include/battle_system/skills/attack.h
 )
 
 target_compile_options("game" PRIVATE --debug -O0)
