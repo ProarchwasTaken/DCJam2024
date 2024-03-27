@@ -1,6 +1,10 @@
 // battle_system/constants.h
 #pragma once
 
+#define PHASE_COMMAND 0
+#define PHASE_ACTION 1
+#define PHASE_END 2
+
 #define PARTY_MEMBER 0
 #define ENEMY 1
 
