@@ -1,4 +1,5 @@
 // battle_manager.cpp
+#include <iostream>
 #include <memory>
 #include <raylib.h>
 #include "constants.h"
@@ -9,10 +10,11 @@
 #include "battle_system/enemy_troops.h"
 #include "battle_system/enemies/skeleton.h"
 
-using std::make_shared, std::shared_ptr;
+using std::make_shared, std::shared_ptr, std::cout;
 
 
 void Game::startBattle() {
+  cout << "Battle Time!\n";
   battle_manager->createEnemyList(TroopTwoSkeleton());
   battle_manager->beginCommandPhase();
   game_state = BATTLE;
@@ -50,6 +52,7 @@ void BattleManager::createEnemyList(EnemyTroop enemy_troop) {
 }
 
 void BattleManager::beginCommandPhase() {
+  cout << "Beginning command phase.\n";
   phase = PHASE_COMMAND;
   awaiting_command = player_team->begin();
 
