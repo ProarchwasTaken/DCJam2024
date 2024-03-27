@@ -10,8 +10,8 @@ using std::vector, std::string;
 struct Skill {
   Skill(Battler &user, Battler &target, int hit_chance);
   ~Skill();
-  virtual void calulation();
-  virtual void applySkill();
+  virtual void calulation() {};
+  virtual void applySkill() {};
 
   Battler *user;
   Battler *target;
