@@ -34,15 +34,14 @@ public:
    * Nah, these's no way.*/
   void draw();
 
+  int current_sprite;
   Texture idle_sprite;
 
   Texture attack_sprite;
   bool has_attack_sprite = false;
 
-private:
   Vector2 position;
   Vector2 origin;
-  int current_sprite;
 };
 
 typedef list<shared_ptr<Enemy>> enemy_list; 
