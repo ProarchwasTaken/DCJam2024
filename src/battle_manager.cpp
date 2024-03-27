@@ -8,7 +8,7 @@
 #include "battle_system/enemy_troops.h"
 #include "battle_system/enemies/skeleton.h"
 
-using std::make_shared;
+using std::make_shared, std::shared_ptr;
 
 
 void Game::startBattle() {
@@ -17,6 +17,17 @@ void Game::startBattle() {
   game_state = BATTLE;
 }
 
+
+BattleManager::BattleManager(shared_ptr<Hud> &hud) {
+  this->hud = hud;
+
+  commands = {
+    COMMAND_ATTACK,
+    COMMAND_SKILL,
+    COMMAND_DEFEND,
+    COMMAND_FLEE
+  };
+}
 
 BattleManager::~BattleManager() {
   enemy_team.clear();
@@ -40,6 +51,8 @@ void BattleManager::beginCommandPhase() {
   phase = PHASE_COMMAND;
   awaiting_command = player_team->begin();
   hud->awaiting_command = &awaiting_command;
+
+  selected_command = commands.begin();
 }
 
 void BattleManager::drawEnemies() {
