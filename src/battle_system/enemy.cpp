@@ -3,6 +3,7 @@
 #include "battle_system/constants.h"
 #include "battle_system/enemy.h" 
 #include <raylib.h>
+#include <raymath.h>
 #include <string>
 
 using std::string;
@@ -13,7 +14,8 @@ Enemy::Enemy(
   int agi
 ): Battler(name, ENEMY, max_hp, max_sp, atk, def, agi) 
 {
-  this->position = position;
+  origin = (Vector2){128, 128};
+  this->position = Vector2Subtract(position, origin);
   current_sprite = IDLE_SPRITE;
 }
 

@@ -41,6 +41,7 @@ public:
 
 private:
   Vector2 position;
+  Vector2 origin;
   int current_sprite;
 };
 
