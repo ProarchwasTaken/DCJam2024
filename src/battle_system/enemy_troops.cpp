@@ -10,10 +10,10 @@ SkeletonInfo::SkeletonInfo(Vector2 position) {
 }
 
 TroopOneSkeleton::TroopOneSkeleton() {
-  troop_info.push_front(SkeletonInfo((Vector2){272, 80}));
+  troop_info.push_front(SkeletonInfo((Vector2){400, 225}));
 }
 
 TroopTwoSkeleton::TroopTwoSkeleton() {
-  troop_info.push_front(SkeletonInfo((Vector2){150, 80}));
-  troop_info.push_front(SkeletonInfo((Vector2){350, 80}));
+  troop_info.push_front(SkeletonInfo((Vector2){285, 225}));
+  troop_info.push_front(SkeletonInfo((Vector2){490, 225}));
 }
