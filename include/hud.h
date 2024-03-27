@@ -13,9 +13,12 @@ public:
   Hud();
   ~Hud();
 
+  void setupCommandBar();
+
   void assignPartyList(party_list &party_members);
   void drawPartyText();
-  void draw();
+  void drawCommandBar();
+  void drawMainFrame();
 
 private:
   Texture frame;
@@ -24,4 +27,9 @@ private:
   int text_spacing;
 
   party_list *party_members;
+
+  RenderTexture command_bar;
+  Texture command_frame;
+  Rectangle command_source;
+  Rectangle command_dest;
 };

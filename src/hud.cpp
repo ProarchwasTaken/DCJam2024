@@ -9,14 +9,24 @@ Hud::Hud() {
   frame = LoadTexture("graphics/sprites/frame.png");
 
   text_spacing = 45;
+  setupCommandBar();
 }
 
 Hud::~Hud() {
   UnloadTexture(frame);
+  UnloadTexture(command_frame);
+  UnloadRenderTexture(command_bar);
 }
 
 void Hud::assignPartyList(party_list &party_members) {
   this->party_members = &party_members;
+}
+
+void Hud::setupCommandBar() {
+  command_bar = LoadRenderTexture(629, 43);
+  command_frame = LoadTexture("graphics/sprites/command_bar.png");
+  command_source = {0, 0, 629, 43};
+  command_dest = {86, 333, 629, 43};
 }
 
 void Hud::drawPartyText() {
@@ -36,8 +46,18 @@ void Hud::drawPartyText() {
   }
 }
 
-void Hud::draw() {
+void Hud::drawMainFrame() {
   DrawTexture(frame, 0, 0, WHITE);
+}
 
-  drawPartyText();
+void Hud::drawCommandBar() {
+  BeginTextureMode(command_bar); 
+  {
+    DrawTexture(command_frame, 0, 0, WHITE);
+  }
+  EndTextureMode();
+
+  DrawTexturePro(
+    command_bar.texture, command_source, command_dest, {0, 0}, 0, WHITE
+  );
 }
