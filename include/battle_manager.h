@@ -35,12 +35,14 @@ public:
   void createEnemyList(EnemyTroop enemy_troop);
 
   void beginCommandPhase();
-  void commandBarInputCheck();
+  void commandBarInput();
+  void targetSelectionInput();
   void commandPhase();
 
   void drawEnemies();
   
   int phase;
+  bool selecting_target;
   
 
 private:
@@ -48,6 +50,7 @@ private:
   party_list::iterator awaiting_command;
 
   enemy_list enemy_team;
+  enemy_list::iterator targeted_enemy;
 
   array<int, 4> commands;
   array<int, 4>::iterator selected_command;

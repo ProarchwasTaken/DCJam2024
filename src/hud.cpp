@@ -4,6 +4,7 @@
 #include "hud.h"
 #include "battle_system/constants.h"
 #include "battle_system/party_members.h"
+#include "battle_system/enemy.h"
 
 using std::shared_ptr;
 
@@ -14,6 +15,7 @@ Hud::Hud() {
 
   text_spacing = 45;
   setupCommandBar();
+  setupTargetReticle();
 }
 
 Hud::~Hud() {
@@ -33,9 +35,21 @@ void Hud::setupCommandBar() {
   command_dest = {86, 333, 629, 43};
 }
 
+void Hud::setupTargetReticle() {
+  target_reticle = LoadTexture("graphics/sprites/target_reticle.png");
+  reticle_source = {0, 0, 92, 44};
+  reticle_dest = {0, 0, 92, 44};
+  reticle_origin = {46, 44};
+}
+
 shared_ptr<PartyMember> Hud::getAwaitingCommand() {
   auto member = *awaiting_command->_M_const_cast();
   return member;
+}
+
+shared_ptr<Enemy> Hud::getTargetedEnemy() {
+  auto enemy = *targeted_enemy->_M_const_cast();
+  return enemy;
 }
 
 void Hud::drawPartyText() {
@@ -109,4 +123,17 @@ void Hud::drawCommandBar() {
   DrawTexturePro(
     command_bar.texture, command_source, command_dest, {0, 0}, 0, WHITE
   );
+}
+
+void Hud::drawTargetingReticle() {
+  auto targeted_enemy = getTargetedEnemy();
+
+  int x = targeted_enemy->position.x + targeted_enemy->origin.x;
+  int y = targeted_enemy->position.y;
+
+  reticle_dest.x = x; 
+  reticle_dest.y = y;
+
+  DrawTexturePro(target_reticle, reticle_source, reticle_dest, 
+                 reticle_origin, 0, WHITE);
 }

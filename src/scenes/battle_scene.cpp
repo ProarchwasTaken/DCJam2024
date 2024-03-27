@@ -24,7 +24,12 @@ void Game::battleDraw() {
 
   switch (battle_manager->phase) {
     case PHASE_COMMAND: {
-      hud->drawCommandBar();
+      if (battle_manager->selecting_target == false) {
+        hud->drawCommandBar();
+      }
+      else {
+        hud->drawTargetingReticle();
+      }
       break;
     }
     case PHASE_ACTION: {

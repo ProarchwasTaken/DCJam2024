@@ -24,6 +24,7 @@ void Game::startBattle() {
 BattleManager::BattleManager(shared_ptr<Hud> &hud) {
   hud->awaiting_command = &awaiting_command;
   hud->selected_command = &selected_command;
+  hud->targeted_enemy = &targeted_enemy;
 
   commands = {
     COMMAND_ATTACK,
@@ -31,6 +32,8 @@ BattleManager::BattleManager(shared_ptr<Hud> &hud) {
     COMMAND_DEFEND,
     COMMAND_FLEE
   };
+
+  selecting_target = false;
 }
 
 BattleManager::~BattleManager() {
@@ -55,11 +58,11 @@ void BattleManager::beginCommandPhase() {
   cout << "Beginning command phase.\n";
   phase = PHASE_COMMAND;
   awaiting_command = player_team->begin();
-
+  targeted_enemy = enemy_team.begin();
   selected_command = commands.begin();
 }
 
-void BattleManager::commandBarInputCheck() {
+void BattleManager::commandBarInput() {
   if (IsKeyPressed(KEY_RIGHT)) {
     selected_command++;
     if (selected_command == commands.end()) {
@@ -72,10 +75,44 @@ void BattleManager::commandBarInputCheck() {
     }
     selected_command--;
   }
+
+  if (IsKeyPressed(KEY_Z)) {
+    switch (*selected_command) {
+      case COMMAND_ATTACK: {
+        awaiting_command->get()->status = ATTACK;
+        selecting_target = true;
+      }
+    }
+  }
+}
+
+void BattleManager::targetSelectionInput() {
+  if (IsKeyPressed(KEY_X)) {
+    awaiting_command->get()->status = STANDBY;
+    selecting_target = false;
+  }
+
+  if (IsKeyPressed(KEY_RIGHT)) {
+    targeted_enemy++;
+    if (targeted_enemy == enemy_team.end()) {
+      targeted_enemy = enemy_team.begin();
+    }
+  }
+  else if (IsKeyPressed(KEY_LEFT)) {
+    if (targeted_enemy == enemy_team.begin()) {
+      targeted_enemy = enemy_team.end();
+    }
+    targeted_enemy--;
+  }
 }
 
 void BattleManager::commandPhase() {
-  commandBarInputCheck();
+  if (selecting_target == false) {
+    commandBarInput();
+  }
+  else {
+    targetSelectionInput();
+  }
 }
 
 void BattleManager::drawEnemies() {
