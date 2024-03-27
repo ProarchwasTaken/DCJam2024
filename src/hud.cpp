@@ -1,7 +1,11 @@
 // hud.cpp
+#include <cstddef>
 #include <raylib.h>
+#include <memory>
 #include "hud.h"
 #include "battle_system/party_members.h"
+
+using std::shared_ptr;
 
 
 Hud::Hud() {
@@ -16,6 +20,10 @@ Hud::~Hud() {
   UnloadTexture(frame);
   UnloadTexture(command_frame);
   UnloadRenderTexture(command_bar);
+
+  if (awaiting_command != NULL) {
+    delete awaiting_command;
+  }
 }
 
 void Hud::assignPartyList(party_list &party_members) {
@@ -25,8 +33,13 @@ void Hud::assignPartyList(party_list &party_members) {
 void Hud::setupCommandBar() {
   command_bar = LoadRenderTexture(629, 43);
   command_frame = LoadTexture("graphics/sprites/command_bar.png");
-  command_source = {0, 0, 629, 43};
+  command_source = {0, 0, 629, -43};
   command_dest = {86, 333, 629, 43};
+}
+
+shared_ptr<PartyMember> Hud::getAwaitingCommand() {;
+  auto member = *awaiting_command->_M_const_cast();
+  return member;
 }
 
 void Hud::drawPartyText() {
@@ -51,9 +64,11 @@ void Hud::drawMainFrame() {
 }
 
 void Hud::drawCommandBar() {
+  Texture *portrait = &getAwaitingCommand()->command_portrait;
   BeginTextureMode(command_bar); 
   {
     DrawTexture(command_frame, 0, 0, WHITE);
+    DrawTexture(*portrait, 4, 4, WHITE);
   }
   EndTextureMode();
 

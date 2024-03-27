@@ -1,11 +1,12 @@
 // hud.h
 #pragma once
 #include <raylib.h>
+#include <memory>
 #include <string>
 #include <array>
 #include "battle_system/party_members.h"
 
-using std::string, std::array;
+using std::string, std::array, std::shared_ptr;
 
 
 class Hud {
@@ -16,9 +17,13 @@ public:
   void setupCommandBar();
 
   void assignPartyList(party_list &party_members);
+  shared_ptr<PartyMember> getAwaitingCommand();
+
   void drawPartyText();
   void drawCommandBar();
   void drawMainFrame();
+
+  party_list::iterator *awaiting_command;
 
 private:
   Texture frame;
