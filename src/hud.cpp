@@ -1,5 +1,4 @@
 // hud.cpp
-#include <cstddef>
 #include <raylib.h>
 #include <memory>
 #include "hud.h"
@@ -34,7 +33,7 @@ void Hud::setupCommandBar() {
   command_dest = {86, 333, 629, 43};
 }
 
-shared_ptr<PartyMember> Hud::getAwaitingCommand() {;
+shared_ptr<PartyMember> Hud::getAwaitingCommand() {
   auto member = *awaiting_command->_M_const_cast();
   return member;
 }
@@ -69,17 +68,17 @@ void Hud::drawCommandText() {
     switch (command) {
       case COMMAND_ATTACK: {
         text = "ATTACK";
-        position = {140, 8};
+        position = {145, 8};
         break;
       }
       case COMMAND_SKILL: {
         text = "SKILL";
-        position = {274, 8};
+        position = {275, 8};
         break;
       }
       case COMMAND_DEFEND: {
         text = "DEFEND";
-        position = {385, 8};
+        position = {390, 8};
         break;
       }
       case COMMAND_FLEE: {
@@ -89,7 +88,11 @@ void Hud::drawCommandText() {
       }
     }
 
-    DrawTextEx(main_font, text, position, 24, 2, tint);
+    if (command == **selected_command) {
+      tint = RED;
+    }
+
+    DrawTextEx(main_font, text, position, 24, 0, tint);
   }
 }
 

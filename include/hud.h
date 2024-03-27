@@ -17,6 +17,7 @@ public:
   void setupCommandBar();
 
   void assignPartyList(party_list &party_members);
+
   shared_ptr<PartyMember> getAwaitingCommand();
 
   void drawPartyText();
@@ -25,6 +26,7 @@ public:
   void drawMainFrame();
 
   party_list::iterator *awaiting_command;
+  array<int, 4>::iterator *selected_command;
 
 private:
   Texture frame;
