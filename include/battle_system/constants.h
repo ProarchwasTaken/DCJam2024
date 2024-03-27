@@ -5,6 +5,11 @@
 #define PHASE_ACTION 1
 #define PHASE_END 2
 
+#define COMMAND_ATTACK 0
+#define COMMAND_SKILL 1
+#define COMMAND_DEFEND 2
+#define COMMAND_FLEE 3
+
 #define PARTY_MEMBER 0
 #define ENEMY 1
 
