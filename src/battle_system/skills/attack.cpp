@@ -24,7 +24,7 @@ void AttackSkill::calulation() {
     damage_magitude = DMG_FORMULA(user->attack, target->defense);
 
     message.push_back(
-      TextFormat("%s took %i damage.", target->name.c_str(), 
+      TextFormat("%s took %i damage.\n", target->name.c_str(), 
                  damage_magitude)
     );
 
@@ -44,6 +44,10 @@ void AttackSkill::calulation() {
 }
 
 void AttackSkill::applySkill() {
+  if (successful_hit == false) {
+    return;
+  }
+
   target->hp -= damage_magitude;
 
   if (target->hp < 0) {
