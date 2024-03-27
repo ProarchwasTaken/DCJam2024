@@ -20,6 +20,7 @@ public:
   shared_ptr<PartyMember> getAwaitingCommand();
 
   void drawPartyText();
+  void drawCommandText();
   void drawCommandBar();
   void drawMainFrame();
 

@@ -3,6 +3,7 @@
 #include <raylib.h>
 #include <memory>
 #include "hud.h"
+#include "battle_system/constants.h"
 #include "battle_system/party_members.h"
 
 using std::shared_ptr;
@@ -63,11 +64,45 @@ void Hud::drawMainFrame() {
   DrawTexture(frame, 0, 0, WHITE);
 }
 
+void Hud::drawCommandText() {
+  for (int command = 0; command < 4; command++) {
+    const char *text;
+    Vector2 position;
+    Color tint = WHITE;
+
+    switch (command) {
+      case COMMAND_ATTACK: {
+        text = "ATTACK";
+        position = {140, 8};
+        break;
+      }
+      case COMMAND_SKILL: {
+        text = "SKILL";
+        position = {274, 8};
+        break;
+      }
+      case COMMAND_DEFEND: {
+        text = "DEFEND";
+        position = {385, 8};
+        break;
+      }
+      case COMMAND_FLEE: {
+        text = "FLEE";
+        position = {530, 8};
+        break;
+      }
+    }
+
+    DrawTextEx(main_font, text, position, 24, 2, tint);
+  }
+}
+
 void Hud::drawCommandBar() {
   Texture *portrait = &getAwaitingCommand()->command_portrait;
   BeginTextureMode(command_bar); 
   {
     DrawTexture(command_frame, 0, 0, WHITE);
+    drawCommandText();
     DrawTexture(*portrait, 4, 4, WHITE);
   }
   EndTextureMode();
