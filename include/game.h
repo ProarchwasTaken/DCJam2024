@@ -9,7 +9,7 @@
 #include "battle_manager.h"
 #include "field/field_player.h"
 
-using std::unique_ptr;
+using std::unique_ptr, std::shared_ptr;
 
 #define CANVAS_X 56
 #define CANVAS_Y 53
@@ -56,6 +56,6 @@ private:
 
   unique_ptr<Level> level;
   unique_ptr<Party> player_party;
-  unique_ptr<Hud> hud;
+  shared_ptr<Hud> hud;
   unique_ptr<FieldPlayer> field_player;
 };

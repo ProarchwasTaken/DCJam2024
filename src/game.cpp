@@ -8,7 +8,7 @@
 #include "field/field_player.h"
 #include "battle_manager.h"
 
-using std::cout, std::make_unique;
+using std::cout, std::make_unique, std::make_shared;
 
 
 Game::Game() {
@@ -20,8 +20,8 @@ Game::Game() {
   origin = {0, 0};
 
   level = make_unique<Level>();
-  hud = make_unique<Hud>();
-  battle_manager = make_unique<BattleManager>();
+  hud = make_shared<Hud>();
+  battle_manager = make_unique<BattleManager>(hud);
 }
 
 /* The destructor should only be called when the program is about to

@@ -13,7 +13,7 @@ using std::make_shared;
 
 void Game::startBattle() {
   battle_manager->createEnemyList(TroopTwoSkeleton());
-  battle_manager->phase = PHASE_COMMAND;
+  battle_manager->beginCommandPhase();
   game_state = BATTLE;
 }
 
@@ -34,6 +34,12 @@ void BattleManager::createEnemyList(EnemyTroop enemy_troop) {
       }
     }
   }
+}
+
+void BattleManager::beginCommandPhase() {
+  phase = PHASE_COMMAND;
+  awaiting_command = player_team->begin();
+  hud->awaiting_command = &awaiting_command;
 }
 
 void BattleManager::drawEnemies() {

@@ -1,8 +1,12 @@
 // battle_manager.h
 #pragma once
+#include <memory>
+#include "hud.h"
 #include "battle_system/enemy.h"
 #include "battle_system/party_members.h"
 #include "battle_system/enemy_troops.h"
+
+using std::shared_ptr;
 
 
 /* Handles the battle system. Basically the culmination of all that code
@@ -24,16 +28,23 @@
  * the party leader is dead, or if all enemies have been defeated.*/
 class BattleManager {
 public:
+  BattleManager(shared_ptr<Hud> &hud) {
+    this->hud = hud;
+  }
   ~BattleManager();
   void assignPartyList(party_list &party_members);
   void createEnemyList(EnemyTroop enemy_troop);
 
+  void beginCommandPhase();
+
   void drawEnemies();
   
   int phase;
+  party_list::iterator awaiting_command;
   
 
 private:
+  shared_ptr<Hud> hud;
   party_list *player_team;
   enemy_list enemy_team;
 };
