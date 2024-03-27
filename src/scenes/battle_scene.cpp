@@ -5,7 +5,18 @@
 
 
 void Game::battleUpdate() {
-
+  switch (battle_manager->phase) {
+    case PHASE_COMMAND: {
+      battle_manager->commandPhase();
+      break;
+    }
+    case PHASE_ACTION: {
+      break;
+    }
+    case PHASE_END: {
+      break;
+    }
+  }
 }
 
 void Game::battleDraw() {

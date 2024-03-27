@@ -1,5 +1,6 @@
 // battle_manager.cpp
 #include <memory>
+#include <raylib.h>
 #include "constants.h"
 #include "battle_system/constants.h"
 #include "game.h"
@@ -19,7 +20,8 @@ void Game::startBattle() {
 
 
 BattleManager::BattleManager(shared_ptr<Hud> &hud) {
-  this->hud = hud;
+  hud->awaiting_command = &awaiting_command;
+  hud->selected_command = &selected_command;
 
   commands = {
     COMMAND_ATTACK,
@@ -50,9 +52,27 @@ void BattleManager::createEnemyList(EnemyTroop enemy_troop) {
 void BattleManager::beginCommandPhase() {
   phase = PHASE_COMMAND;
   awaiting_command = player_team->begin();
-  hud->awaiting_command = &awaiting_command;
 
   selected_command = commands.begin();
+}
+
+void BattleManager::commandBarInputCheck() {
+  if (IsKeyPressed(KEY_RIGHT)) {
+    selected_command++;
+    if (selected_command == commands.end()) {
+      selected_command = commands.begin();
+    }
+  }
+  else if (IsKeyPressed(KEY_LEFT)) {
+    if (selected_command == commands.begin()) {
+      selected_command = commands.end();
+    }
+    selected_command--;
+  }
+}
+
+void BattleManager::commandPhase() {
+  commandBarInputCheck();
 }
 
 void BattleManager::drawEnemies() {

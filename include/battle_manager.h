@@ -35,6 +35,8 @@ public:
   void createEnemyList(EnemyTroop enemy_troop);
 
   void beginCommandPhase();
+  void commandBarInputCheck();
+  void commandPhase();
 
   void drawEnemies();
   
@@ -42,8 +44,6 @@ public:
   
 
 private:
-  shared_ptr<Hud> hud;
-
   party_list *player_team;
   party_list::iterator awaiting_command;
 
