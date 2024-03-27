@@ -57,6 +57,7 @@ void BattleManager::createEnemyList(EnemyTroop enemy_troop) {
 void BattleManager::beginCommandPhase() {
   cout << "Beginning command phase.\n";
   phase = PHASE_COMMAND;
+
   awaiting_command = player_team->begin();
   targeted_enemy = enemy_team.begin();
   selected_command = commands.begin();

@@ -24,6 +24,7 @@ struct Battler {
    * number, the function will return a string corrolating to the value
    * of status.*/
   const char *getStatusString();
+  void deathCheck();
 
   string name;
   int status;

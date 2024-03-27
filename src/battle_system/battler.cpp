@@ -52,3 +52,12 @@ const char *Battler::getStatusString() {
 
   return status_string;
 }
+
+void Battler::deathCheck() {
+  if (hp <= 0) {
+    hp = 0;
+
+    status = DYING;
+    dead = true;
+  }
+}

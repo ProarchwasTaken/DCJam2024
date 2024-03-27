@@ -1,5 +1,6 @@
 // attack.cpp
 #include <raylib.h>
+#include "battle_system/constants.h"
 #include "battle_system/battler.h"
 #include "battle_system/skill.h"
 #include "battle_system/skills/attack.h"
@@ -49,10 +50,7 @@ void AttackSkill::applySkill() {
   }
 
   target->hp -= damage_magitude;
-
-  if (target->hp < 0) {
-    target->hp = 0;
-  }
+  target->deathCheck();
 }
 
 #undef DMG_FORMULA
