@@ -21,10 +21,6 @@ Hud::~Hud() {
   UnloadTexture(frame);
   UnloadTexture(command_frame);
   UnloadRenderTexture(command_bar);
-
-  if (awaiting_command != NULL) {
-    delete awaiting_command;
-  }
 }
 
 void Hud::assignPartyList(party_list &party_members) {
