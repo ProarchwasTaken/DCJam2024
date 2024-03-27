@@ -32,6 +32,7 @@ void Game::fieldDraw() {
   }
   EndTextureMode();
 
-  hud->draw();
+  hud->drawMainFrame();
+  hud->drawPartyText();
   DrawTexturePro(canvas3D.texture, source, dest, origin, 0, WHITE);
 }
