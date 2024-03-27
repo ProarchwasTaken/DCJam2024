@@ -13,6 +13,7 @@ using std::make_shared;
 
 void Game::startBattle() {
   battle_manager->createEnemyList(TroopTwoSkeleton());
+  battle_manager->phase = PHASE_COMMAND;
   game_state = BATTLE;
 }
 

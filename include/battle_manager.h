@@ -29,6 +29,9 @@ public:
   void createEnemyList(EnemyTroop enemy_troop);
 
   void drawEnemies();
+  
+  int phase;
+  
 
 private:
   party_list *player_team;
