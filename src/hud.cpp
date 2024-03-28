@@ -16,6 +16,7 @@ Hud::Hud() {
   text_spacing = 45;
   setupCommandBar();
   setupTargetReticle();
+  setupTextBox();
 }
 
 Hud::~Hud() {
@@ -40,6 +41,13 @@ void Hud::setupTargetReticle() {
   reticle_source = {0, 0, 92, 44};
   reticle_dest = {0, 0, 92, 44};
   reticle_origin = {46, 44};
+}
+
+void Hud::setupTextBox() {
+  text_box = LoadRenderTexture(611, 126);
+  box_frame = LoadTexture("graphics/sprites/text_box.png");
+  box_source = {0, 0, 611, -126};
+  box_dest = {95, 294, 611, 126};
 }
 
 shared_ptr<PartyMember> Hud::getAwaitingCommand() {
@@ -136,4 +144,15 @@ void Hud::drawTargetingReticle() {
 
   DrawTexturePro(target_reticle, reticle_source, reticle_dest, 
                  reticle_origin, 0, WHITE);
+}
+
+void Hud::drawTextBox() {
+  BeginTextureMode(text_box);
+  {
+    DrawTexture(box_frame, 0, 0, WHITE);
+  }
+  EndTextureMode();
+
+  DrawTexturePro(text_box.texture, box_source, box_dest, 
+                 {0, 0}, 0, WHITE);
 }

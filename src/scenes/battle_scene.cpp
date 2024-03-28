@@ -11,6 +11,7 @@ void Game::battleUpdate() {
       break;
     }
     case PHASE_ACTION: {
+      battle_manager->actionPhase();
       break;
     }
     case PHASE_END: {
@@ -33,6 +34,7 @@ void Game::battleDraw() {
       break;
     }
     case PHASE_ACTION: {
+      hud->drawTextBox();
       break;
     }
     case PHASE_END: {

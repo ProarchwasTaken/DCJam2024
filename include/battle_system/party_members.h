@@ -5,8 +5,9 @@
 #include <memory>
 #include <list>
 #include "battler.h"
+#include "skill.h"
 
-using std::string, std::list, std::shared_ptr;
+using std::string, std::list, std::shared_ptr, std::unique_ptr;
 
 /* Man, working with inheritance in C++ can be a pain sometimes. Lines can
  * get absurdly long. Back on topic, this class is derived from the
@@ -27,6 +28,7 @@ public:
   ~PartyMember();
 
   Texture command_portrait;
+  unique_ptr<Skill> chosen_skill;
 };
 
 

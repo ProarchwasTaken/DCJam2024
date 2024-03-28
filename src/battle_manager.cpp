@@ -9,8 +9,9 @@
 #include "battle_system/party_members.h"
 #include "battle_system/enemy_troops.h"
 #include "battle_system/enemies/skeleton.h"
+#include "battle_system/skills/attack.h"
 
-using std::make_shared, std::shared_ptr, std::cout;
+using std::make_shared, std::shared_ptr, std::cout, std::make_unique;
 
 
 void Game::startBattle() {
@@ -54,6 +55,31 @@ void BattleManager::createEnemyList(EnemyTroop enemy_troop) {
   }
 }
 
+void BattleManager::assignSkill() {
+  PartyMember *user = awaiting_command->get();
+  Enemy *target = targeted_enemy->get();
+
+  switch (user->status) {
+    case ATTACK: {
+      cout << "Assigning AttackSkill to: " << user->name << "\n";
+      user->chosen_skill.reset();
+      user->chosen_skill = make_unique<AttackSkill>(*user, *target);
+    }
+  }
+
+  nextAwaitingCommand();
+}
+
+void BattleManager::nextAwaitingCommand() {
+  cout << "Moving on to the next party member that needs a command.\n";
+  awaiting_command++;
+
+  if (awaiting_command == player_team->end()) {
+    cout << "Commands have been assigned to all party members.\n";
+    beginActionPhase();
+  }
+}
+
 void BattleManager::beginCommandPhase() {
   cout << "Beginning command phase.\n";
   phase = PHASE_COMMAND;
@@ -61,6 +87,11 @@ void BattleManager::beginCommandPhase() {
   awaiting_command = player_team->begin();
   targeted_enemy = enemy_team.begin();
   selected_command = commands.begin();
+}
+
+void BattleManager::beginActionPhase() {
+  cout << "Beginning action phase.\n";
+  phase = PHASE_ACTION;
 }
 
 void BattleManager::commandBarInput() {
@@ -92,6 +123,10 @@ void BattleManager::targetSelectionInput() {
     awaiting_command->get()->status = STANDBY;
     selecting_target = false;
   }
+  else if (IsKeyPressed(KEY_Z)) {
+    assignSkill();
+    selecting_target = false;
+  }
 
   if (IsKeyPressed(KEY_RIGHT)) {
     targeted_enemy++;
@@ -114,6 +149,10 @@ void BattleManager::commandPhase() {
   else {
     targetSelectionInput();
   }
+}
+
+void BattleManager::actionPhase() {
+
 }
 
 void BattleManager::drawEnemies() {

@@ -16,4 +16,8 @@ PartyMember::PartyMember(
 
 PartyMember::~PartyMember() {
   UnloadTexture(command_portrait);
+
+  if (chosen_skill != nullptr) {
+    chosen_skill.reset();
+  }
 }

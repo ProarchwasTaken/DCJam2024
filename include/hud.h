@@ -17,6 +17,7 @@ public:
 
   void setupCommandBar();
   void setupTargetReticle();
+  void setupTextBox();
 
   void assignPartyList(party_list &party_members);
 
@@ -24,9 +25,14 @@ public:
   shared_ptr<Enemy> getTargetedEnemy();
 
   void drawPartyText();
+
   void drawCommandText();
   void drawCommandBar();
+
   void drawTargetingReticle();
+
+  void drawTextBox();
+
   void drawMainFrame();
 
   party_list::iterator *awaiting_command;
@@ -50,4 +56,9 @@ private:
   Rectangle reticle_source;
   Rectangle reticle_dest;
   Vector2 reticle_origin;
+  
+  RenderTexture text_box;
+  Texture box_frame;
+  Rectangle box_source;
+  Rectangle box_dest;
 };

@@ -17,6 +17,7 @@
 #define ATTACK 1
 #define SKILL 2
 #define DEFEND 3
-#define DYING 4
+#define FLEE 4
+#define DYING 5
 
 #define SKELETON 0

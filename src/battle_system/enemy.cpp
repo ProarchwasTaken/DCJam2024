@@ -25,6 +25,10 @@ Enemy::~Enemy() {
   if (has_attack_sprite) {
     UnloadTexture(attack_sprite);
   }
+  
+  if (chosen_skill != nullptr) {
+    chosen_skill.reset();
+  }
 }
 
 void Enemy::draw() {

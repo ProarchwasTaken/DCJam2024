@@ -5,8 +5,9 @@
 #include <memory>
 #include <string>
 #include "battler.h"
+#include "skill.h"
 
-using std::string, std::shared_ptr, std::list;
+using std::string, std::shared_ptr, std::list, std::unique_ptr;
 
 #define IDLE_SPRITE 0
 #define ATTACK_SPRITE 1
@@ -33,6 +34,8 @@ public:
    * DRAWING THE ENEMY BASED ON THEIR CURRENT SPRITE would it? 
    * Nah, these's no way.*/
   void draw();
+
+  unique_ptr<Skill> chosen_skill;
 
   int current_sprite;
   Texture idle_sprite;

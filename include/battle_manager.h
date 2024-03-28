@@ -34,10 +34,16 @@ public:
   void assignPartyList(party_list &party_members);
   void createEnemyList(EnemyTroop enemy_troop);
 
+  void assignSkill();
+  void nextAwaitingCommand();
+
   void beginCommandPhase();
   void commandBarInput();
   void targetSelectionInput();
   void commandPhase();
+
+  void beginActionPhase();
+  void actionPhase();
 
   void drawEnemies();
   
