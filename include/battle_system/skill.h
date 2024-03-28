@@ -2,6 +2,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "common.h"
 #include "battler.h"
 
 using std::vector, std::string;

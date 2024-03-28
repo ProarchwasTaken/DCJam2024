@@ -12,8 +12,6 @@ Skill::Skill(Battler &user, Battler &target, int hit_chance,
 
   this->agi_modifier = agi_modifier;
   user.agi_modifier += agi_modifier;
-
-  calulation();
 }
 
 Skill::~Skill() {

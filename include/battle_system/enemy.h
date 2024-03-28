@@ -4,6 +4,7 @@
 #include <list>
 #include <memory>
 #include <string>
+#include "party_members.h"
 #include "battler.h"
 #include "skill.h"
 
@@ -11,6 +12,7 @@ using std::string, std::shared_ptr, std::list, std::unique_ptr;
 
 #define IDLE_SPRITE 0
 #define ATTACK_SPRITE 1
+
 
 /* Derived from the Battler struct. I don't know, if you're already aware
  * of this, but class is for the game's enemies. Featuring variables for
@@ -28,14 +30,14 @@ public:
     int def, int agi);
   ~Enemy();
 
+  virtual void selectSkill(party_list &player_team) {}
+
   /* Gee Golly! I wonder what this function that's named "draw" does?
    * Does it have something to do with drawing swords maybe? There is 
    * absolutely no way it could possibly have something to do with 
    * DRAWING THE ENEMY BASED ON THEIR CURRENT SPRITE would it? 
    * Nah, these's no way.*/
   void draw();
-
-  unique_ptr<Skill> chosen_skill;
 
   int current_sprite;
   Texture idle_sprite;

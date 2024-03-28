@@ -8,13 +8,12 @@
 
 
 AttackSkill::AttackSkill(Battler &user, Battler &target):
-Skill(user, target, 75, 0)
-{
-
+Skill(user, target, 75, 0){
+  calulation();
 }
 
 void AttackSkill::calulation() {
-  message.push_back(TextFormat("%s attacks!\n", user->name.c_str()));
+  message.push_back(TextFormat("%s attacks!\n\n", user->name.c_str()));
 
   int random_number = GetRandomValue(1, 100);
 
@@ -24,7 +23,7 @@ void AttackSkill::calulation() {
     damage_magitude = DMG_FORMULA(user->attack, target->defense);
 
     message.push_back(
-      TextFormat("%s took %i damage.\n", target->name.c_str(), 
+      TextFormat("%s took %i damage.\n\n", target->name.c_str(), 
                  damage_magitude)
     );
 

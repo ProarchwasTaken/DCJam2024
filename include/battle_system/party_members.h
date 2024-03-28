@@ -28,7 +28,6 @@ public:
   ~PartyMember();
 
   Texture command_portrait;
-  unique_ptr<Skill> chosen_skill;
 };
 
 

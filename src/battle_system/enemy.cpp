@@ -32,6 +32,10 @@ Enemy::~Enemy() {
 }
 
 void Enemy::draw() {
+  if (dead) {
+    return;
+  }
+
   Texture *selected_texture;
 
   switch (current_sprite) {

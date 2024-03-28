@@ -2,13 +2,14 @@
 #pragma once
 #include <memory>
 #include <array>
+#include <string>
 #include "hud.h"
 #include "battle_system/battler.h"
 #include "battle_system/enemy.h"
 #include "battle_system/party_members.h"
 #include "battle_system/enemy_troops.h"
 
-using std::shared_ptr, std::array;
+using std::shared_ptr, std::array, std::string;
 
 
 /* Handles the battle system. Basically the culmination of all that code
@@ -35,22 +36,29 @@ public:
   void assignPartyList(party_list &party_members);
   void createEnemyList(EnemyTroop enemy_troop);
 
-  void assignSkill();
-  void nextAwaitingCommand();
-
   void beginCommandPhase();
   void commandBarInput();
   void targetSelectionInput();
   void commandPhase();
+  void nextAwaitingCommand();
+  void assignSkill();
 
   void beginActionPhase();
+  void nextTurn();
+
+  void displayLine1(Battler *battler);
+  void displayLine2(Battler *battler);
+  void displayLine3(Battler *battler);
+
+  void endTurn(Battler *battler);
+  void turnSequence(Battler *battler);
+
   void actionPhase();
 
   void drawEnemies();
   
   int phase;
   bool selecting_target;
-  
 
 private:
   party_list *player_team;
@@ -64,4 +72,20 @@ private:
 
   array<int, 4> commands;
   array<int, 4>::iterator selected_command;
+
+  string *text_buffer;
+
+  float turn_timestamp;
+  bool checked_if_dead;
+
+  bool displayed_line1;
+  float line1_seconds;
+
+  bool displayed_line2;
+  float line2_seconds;
+
+  bool displayed_line3;
+
+  float turn_seconds;
+  bool finished_turn; 
 };

@@ -34,6 +34,7 @@ include/hud.h
 include/battle_manager.h
 include/field/field_player.h
 include/battle_system/constants.h
+include/battle_system/common.h
 include/battle_system/battler.h
 include/battle_system/enemy.h
 include/battle_system/party_members.h

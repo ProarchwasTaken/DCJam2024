@@ -3,8 +3,10 @@
 #include <string>
 #include <memory>
 #include <list>
+#include "common.h"
+#include "skill.h"
 
-using std::string, std::list, std::shared_ptr;
+using std::string, std::list, std::shared_ptr, std::unique_ptr;
 
 
 /* A "Battler" could be considered a generalized term for a participant
@@ -27,9 +29,11 @@ struct Battler {
   void deathCheck();
 
   string name;
-  int status;
   int type;
+  int status;
   bool dead;
+
+  unique_ptr<Skill> chosen_skill;
 
   int hp;
   int max_hp;

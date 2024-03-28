@@ -4,8 +4,8 @@
 #include <memory>
 #include <string>
 #include <array>
-#include "battle_system/enemy.h"
 #include "battle_system/party_members.h"
+#include "battle_system/enemy.h"
 
 using std::string, std::array, std::shared_ptr;
 
@@ -35,6 +35,8 @@ public:
 
   void drawMainFrame();
 
+  string text_buffer;
+
   party_list::iterator *awaiting_command;
   enemy_list::iterator *targeted_enemy;
   array<int, 4>::iterator *selected_command;
@@ -61,4 +63,5 @@ private:
   Texture box_frame;
   Rectangle box_source;
   Rectangle box_dest;
+
 };

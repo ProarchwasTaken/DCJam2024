@@ -23,6 +23,11 @@ Hud::~Hud() {
   UnloadTexture(frame);
   UnloadTexture(command_frame);
   UnloadRenderTexture(command_bar);
+
+  UnloadTexture(target_reticle);
+
+  UnloadTexture(box_frame);
+  UnloadRenderTexture(text_box);
 }
 
 void Hud::assignPartyList(party_list &party_members) {
@@ -150,6 +155,7 @@ void Hud::drawTextBox() {
   BeginTextureMode(text_box);
   {
     DrawTexture(box_frame, 0, 0, WHITE);
+    DrawTextEx(main_font, text_buffer.c_str(), {10, 10}, 32, 0, WHITE);
   }
   EndTextureMode();
 
