@@ -39,7 +39,9 @@ struct Battler {
 
   int attack;
   int defense;
+
   int agility;
+  int agi_modifier;
 };
 
 typedef list<shared_ptr<Battler>> battler_list;

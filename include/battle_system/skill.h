@@ -8,7 +8,7 @@ using std::vector, std::string;
 
 
 struct Skill {
-  Skill(Battler &user, Battler &target, int hit_chance);
+  Skill(Battler &user, Battler &target, int hit_chance, int agi_modifier);
   ~Skill();
   virtual void calulation() {};
   virtual void applySkill() {};
@@ -18,6 +18,8 @@ struct Skill {
 
   int hit_chance;
   bool successful_hit;
+
+  int agi_modifier;
 
   vector<string> message;
 };

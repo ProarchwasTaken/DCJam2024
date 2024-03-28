@@ -1,6 +1,5 @@
 // attack.cpp
 #include <raylib.h>
-#include "battle_system/constants.h"
 #include "battle_system/battler.h"
 #include "battle_system/skill.h"
 #include "battle_system/skills/attack.h"
@@ -9,7 +8,7 @@
 
 
 AttackSkill::AttackSkill(Battler &user, Battler &target):
-Skill(user, target, 75)
+Skill(user, target, 75, 0)
 {
 
 }

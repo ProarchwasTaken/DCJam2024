@@ -21,7 +21,9 @@ Battler::Battler(
 
   attack = atk;
   defense = def;
+
   agility = agi;
+  agi_modifier = 0;
 }
 
 const char *Battler::getStatusString() {
