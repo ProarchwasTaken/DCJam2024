@@ -18,5 +18,5 @@ Skill::Skill(Battler &user, Battler &target, int hit_chance,
 
 Skill::~Skill() {
   message.clear();
-  user->agi_modifier -= agi_modifier;
+  user->agi_modifier = 0;
 }
