@@ -6,6 +6,7 @@
 #include "battle_system/constants.h"
 #include "game.h"
 #include "battle_manager.h"
+#include "battle_system/battler.h"
 #include "battle_system/party_members.h"
 #include "battle_system/enemy_troops.h"
 #include "battle_system/enemies/skeleton.h"
@@ -89,9 +90,28 @@ void BattleManager::beginCommandPhase() {
   selected_command = commands.begin();
 }
 
+bool compareAgility(shared_ptr<Battler> &b1, shared_ptr<Battler> &b2) {
+  return b1->agility + b1->agi_modifier > b2->agility + b2->agi_modifier;
+}
+
 void BattleManager::beginActionPhase() {
   cout << "Beginning action phase.\n";
   phase = PHASE_ACTION;
+
+  turn_order.clear();
+  for (auto party_member : *player_team) {
+    turn_order.push_back(party_member);
+  }
+  for (auto enemy : enemy_team) {
+    turn_order.push_back(enemy);
+  }
+
+  turn_order.sort(compareAgility);
+  cout << "Turn order: ";
+  for (auto battler : turn_order) {
+    cout << battler->name << ", ";
+  }
+  cout << "\n";
 }
 
 void BattleManager::commandBarInput() {

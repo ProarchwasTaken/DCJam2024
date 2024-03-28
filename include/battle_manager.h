@@ -3,6 +3,7 @@
 #include <memory>
 #include <array>
 #include "hud.h"
+#include "battle_system/battler.h"
 #include "battle_system/enemy.h"
 #include "battle_system/party_members.h"
 #include "battle_system/enemy_troops.h"
@@ -57,6 +58,9 @@ private:
 
   enemy_list enemy_team;
   enemy_list::iterator targeted_enemy;
+
+  battler_list turn_order;
+  battler_list::iterator current_turn;
 
   array<int, 4> commands;
   array<int, 4>::iterator selected_command;
