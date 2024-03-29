@@ -3,12 +3,16 @@
 #include <memory>
 #include "battle_system/party.h"
 #include "battle_system/party_members/steve.h"
+#include "battle_system/party_members/ren.h"
+#include "battle_system/party_members/sakura.h"
 
 using std::make_shared, std::cout;
 
 
 Party::Party() {
-  party_members.push_front(make_shared<Steve>());
+  party_members.push_back(make_shared<Steve>());
+  party_members.push_back(make_shared<Ren>());
+  party_members.push_back(make_shared<Sakura>());
   overview();
 }
 
