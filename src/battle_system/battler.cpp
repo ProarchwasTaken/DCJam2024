@@ -20,7 +20,9 @@ Battler::Battler(
   sp = max_sp;
 
   attack = atk;
+
   defense = def;
+  def_multiplier = 1.0f;
 
   agility = agi;
   agi_modifier = 0;

@@ -42,7 +42,9 @@ struct Battler {
   int max_sp;
 
   int attack;
+
   int defense;
+  float def_multiplier;
 
   int agility;
   int agi_modifier;
