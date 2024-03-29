@@ -48,6 +48,10 @@ const char *Battler::getStatusString() {
       status_string = "Defend";
       break;
     }
+    case FLEE: {
+      status_string = "FLEE";
+      break;
+    }
     case DYING: {
       status_string = "Dying";
       break;
