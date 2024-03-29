@@ -8,7 +8,7 @@
 
 
 AttackSkill::AttackSkill(Battler &user, Battler &target):
-Skill(user, target, 75, 0){
+Skill(user, target, 85, 0){
   calulation();
 }
 
