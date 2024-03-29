@@ -10,6 +10,6 @@ void Game::loseUpdate() {
   }
 }
 
-void Game::loseDraw() {
-
+void Game::loseDraw(Font &main_font) {
+  DrawTextEx(main_font, "GAME OVER", {185, 250}, 64, 5, WHITE);
 }

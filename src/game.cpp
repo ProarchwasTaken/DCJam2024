@@ -114,7 +114,7 @@ void Game::draw() {
   ClearBackground(BLACK);
   switch (game_state) {
     case TITLE: {
-      titleDraw();
+      titleDraw(main_font);
       break;
     }
     case FIELD: {
@@ -127,7 +127,7 @@ void Game::draw() {
       break;
     }
     case LOSE: {
-      loseDraw();
+      loseDraw(main_font);
       break;
     }
   }

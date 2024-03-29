@@ -39,7 +39,7 @@ public:
   void endBattle();
   
   void titleUpdate();
-  void titleDraw();
+  void titleDraw(Font &main_font);
 
   void fieldUpdate();
   void fieldDraw();
@@ -48,7 +48,7 @@ public:
   void battleDraw();
 
   void loseUpdate();
-  void loseDraw();
+  void loseDraw(Font &main_font);
 
 private:
   uint8_t game_state;
