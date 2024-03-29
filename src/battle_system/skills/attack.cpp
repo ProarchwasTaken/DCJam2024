@@ -36,7 +36,7 @@ void AttackSkill::calulation() {
   }
   else {
     message.push_back(
-      TextFormat("%s evaded the attack!", target->name.c_str())
+      TextFormat("%s evaded the attack!\n\n", target->name.c_str())
     );
     successful_hit = false;
   }
