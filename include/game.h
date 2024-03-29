@@ -32,6 +32,9 @@ public:
   /* Functions the same as the update function.*/
   void draw();
 
+  void startGame();
+  void gameover();
+
   void startBattle();
   void endBattle();
   

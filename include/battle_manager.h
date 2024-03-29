@@ -56,13 +56,14 @@ public:
   void actionPhase();
 
   void endPhaseConditons();
-  void enterEndPhase();
+  void enterEndPhase(bool game_over);
   void endPhase();
 
   void drawEnemies();
   
   int phase;
   bool end_battle;
+  bool lost_battle;
   bool selecting_target;
 
 private:

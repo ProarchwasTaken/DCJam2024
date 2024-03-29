@@ -50,6 +50,18 @@ Game::~Game() {
   cout << "Thanks for playing!\n";
 }
 
+void Game::startGame() {
+  cout << "Starting the game.\n";
+  setupGameObjects();
+  game_state = FIELD;
+}
+
+void Game::gameover() {
+  cout << "Game Over.\n";
+  cleanupGameObjects();
+  game_state = LOSE;
+}
+
 /* Called when the player presses the enter key on the title screen.
  * Important to make sure all the game's elements are initialized.*/
 void Game::setupGameObjects() {
@@ -90,6 +102,10 @@ void Game::update() {
       battleUpdate();
       break;
     }
+    case LOSE: {
+      loseUpdate();
+      break;
+    }
   }
 }
 
@@ -108,6 +124,11 @@ void Game::draw() {
     case BATTLE: {
       fieldDraw();
       battleDraw();
+      break;
+    }
+    case LOSE: {
+      loseDraw();
+      break;
     }
   }
   EndDrawing();

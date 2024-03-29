@@ -10,3 +10,4 @@
 #define TITLE 0
 #define FIELD 1
 #define BATTLE 2
+#define LOSE 3

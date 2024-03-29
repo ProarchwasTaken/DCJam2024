@@ -17,6 +17,7 @@ src/battle_manager.cpp
 src/scenes/title_scene.cpp
 src/scenes/field_scene.cpp
 src/scenes/battle_scene.cpp
+src/scenes/lose_scene.cpp
 src/field/field_player.cpp
 src/battle_system/battler.cpp
 src/battle_system/enemy.cpp

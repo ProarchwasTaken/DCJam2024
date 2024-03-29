@@ -26,7 +26,14 @@ void Game::startBattle() {
 void Game::endBattle() {
   cout << "Show's over!\n";
   battle_manager->end_battle = false;
-  game_state = FIELD;
+
+  if (battle_manager->lost_battle) {
+    battle_manager->lost_battle = false;
+    gameover();
+  }
+  else {
+    game_state = FIELD;
+  }
 }
 
 
@@ -45,6 +52,7 @@ BattleManager::BattleManager(shared_ptr<Hud> &hud) {
   };
 
   end_battle = false;
+  lost_battle = false;
   selecting_target = false;
   
   checked_if_dead = false;
@@ -339,17 +347,30 @@ void BattleManager::endPhaseConditons() {
     if (enemy->dead == false) all_enemies_dead = false;
   }
 
-  if (all_enemies_dead == false) {
-    beginCommandPhase();
+  bool leader_dead = player_team->front()->dead;
+  if (leader_dead) {
+    cout << "Party leader is dead. The battle is lost.\n";
+    enterEndPhase(true);
+  }
+  else if (all_enemies_dead) {
+    cout << "All enemies are dead. The battle is won!\n";
+    enterEndPhase(false);
   }
   else {
-    enterEndPhase();
+    cout << "Conditions haven't been met yet. Restarting cycle.\n";
+    beginCommandPhase();
   }
 }
 
-void BattleManager::enterEndPhase() {
+void BattleManager::enterEndPhase(bool game_over) {
   cout << "Now entering the end phase.\n";
-  text_buffer->append("You survived!");
+  if (game_over) {
+    text_buffer->append("Steve has fallen...");
+    lost_battle = true;
+  }
+  else {
+    text_buffer->append("You survived!");
+  }
 
   phase = PHASE_END;
   end_timestamp = GetTime();
