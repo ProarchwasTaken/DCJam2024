@@ -393,14 +393,14 @@ void BattleManager::endPhaseConditons() {
   bool all_enemies_dead = true;
   for (auto enemy : enemy_team) {
     if (enemy->dead == false) all_enemies_dead = false;
-    enemy->def_multiplier = 0.0;
+    enemy->def_multiplier = 1.0;
   }
 
   for (auto party_member : *player_team) {
     if (party_member->dead == false) {
       party_member->status = STANDBY;
     }
-    party_member->def_multiplier = 0.0;
+    party_member->def_multiplier = 1.0;
   }
 
   bool leader_dead = player_team->front()->dead;
