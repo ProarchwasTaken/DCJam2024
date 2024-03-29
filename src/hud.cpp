@@ -9,8 +9,8 @@
 using std::shared_ptr;
 
 
-Hud::Hud() {
-  main_font = LoadFont("graphics/fonts/vcr.ttf");
+Hud::Hud(Font &main_font) {
+  this->main_font = &main_font;
   frame = LoadTexture("graphics/sprites/frame.png");
 
   text_spacing = 45;
@@ -73,10 +73,10 @@ void Hud::drawPartyText() {
     const char *sp = TextFormat("%02i", member->sp);
     const char *status = member->getStatusString();
 
-    DrawTextEx(main_font, name, {75, y}, 30, 3, WHITE);
-    DrawTextEx(main_font, hp, {260, y}, 30, 3, WHITE);
-    DrawTextEx(main_font, sp, {465, y}, 30, 3, WHITE);
-    DrawTextEx(main_font, status, {580, y}, 30, 3, WHITE);
+    DrawTextEx(*main_font, name, {75, y}, 30, 3, WHITE);
+    DrawTextEx(*main_font, hp, {260, y}, 30, 3, WHITE);
+    DrawTextEx(*main_font, sp, {465, y}, 30, 3, WHITE);
+    DrawTextEx(*main_font, status, {580, y}, 30, 3, WHITE);
 
     y += text_spacing; 
   }
@@ -119,7 +119,7 @@ void Hud::drawCommandText() {
       tint = RED;
     }
 
-    DrawTextEx(main_font, text, position, 24, 0, tint);
+    DrawTextEx(*main_font, text, position, 24, 0, tint);
   }
 }
 
@@ -155,7 +155,7 @@ void Hud::drawTextBox() {
   BeginTextureMode(text_box);
   {
     DrawTexture(box_frame, 0, 0, WHITE);
-    DrawTextEx(main_font, text_buffer.c_str(), {10, 10}, 32, 0, WHITE);
+    DrawTextEx(*main_font, text_buffer.c_str(), {10, 10}, 32, 0, WHITE);
   }
   EndTextureMode();
 

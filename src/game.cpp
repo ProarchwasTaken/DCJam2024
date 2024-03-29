@@ -13,6 +13,7 @@ using std::cout, std::make_unique, std::make_shared;
 
 Game::Game() {
   game_state = TITLE;
+  main_font = LoadFont("graphics/fonts/vcr.ttf");
 
   canvas3D = LoadRenderTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
   source = {0, 0, WINDOW_WIDTH, -WINDOW_HEIGHT};
@@ -20,7 +21,7 @@ Game::Game() {
   origin = {0, 0};
 
   level = make_unique<Level>();
-  hud = make_shared<Hud>();
+  hud = make_shared<Hud>(main_font);
   battle_manager = make_unique<BattleManager>(hud);
 }
 
@@ -31,6 +32,7 @@ Game::~Game() {
   cleanupGameObjects();
 
   UnloadRenderTexture(canvas3D);
+  UnloadFont(main_font);
 
   if (level != nullptr) {
     level.reset();

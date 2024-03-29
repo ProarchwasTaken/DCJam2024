@@ -44,9 +44,13 @@ public:
   void battleUpdate();
   void battleDraw();
 
+  void loseUpdate();
+  void loseDraw();
+
 private:
   uint8_t game_state;
   double delta_time;
+  Font main_font;
 
   RenderTexture canvas3D;
   Rectangle source;

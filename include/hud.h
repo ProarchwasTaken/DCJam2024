@@ -12,7 +12,7 @@ using std::string, std::array, std::shared_ptr;
 
 class Hud {
 public:
-  Hud();
+  Hud(Font &main_font);
   ~Hud();
 
   void setupCommandBar();
@@ -44,7 +44,7 @@ public:
 private:
   Texture frame;
 
-  Font main_font;
+  Font *main_font;
   int text_spacing;
 
   party_list *party_members;
