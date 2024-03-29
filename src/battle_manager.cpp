@@ -12,6 +12,7 @@
 #include "battle_system/enemy_troops.h"
 #include "battle_system/enemies/skeleton.h"
 #include "battle_system/skills/attack.h"
+#include "battle_system/skills/defend.h"
 
 using std::make_shared, std::shared_ptr, std::cout, std::make_unique;
 
@@ -94,11 +95,17 @@ void BattleManager::assignSkill() {
   PartyMember *user = awaiting_command->get();
   Enemy *target = targeted_enemy->get();
 
+  user->chosen_skill.reset();
   switch (user->status) {
     case ATTACK: {
       cout << "Assigning AttackSkill to: " << user->name << "\n";
-      user->chosen_skill.reset();
       user->chosen_skill = make_unique<AttackSkill>(*user, *target);
+      break;
+    }
+    case DEFEND: {
+      cout << "Assigning AttackSkill to: " << user->name << "\n";
+      user->chosen_skill = make_unique<DefendSkill>(*user);
+      break;
     }
   }
 
@@ -139,10 +146,18 @@ void BattleManager::commandBarInput() {
   }
 
   if (IsKeyPressed(KEY_Z)) {
+    PartyMember *party_member = awaiting_command->get();
+
     switch (*selected_command) {
       case COMMAND_ATTACK: {
-        awaiting_command->get()->status = ATTACK;
+        party_member->status = ATTACK;
         selecting_target = true;
+        break;
+      }
+      case COMMAND_DEFEND: {
+        party_member->status = DEFEND;
+        assignSkill();
+        break;
       }
     }
   }

@@ -14,6 +14,13 @@ Skill::Skill(Battler &user, Battler &target, int hit_chance,
   user.agi_modifier += agi_modifier;
 }
 
+Skill::Skill(Battler &user, int agi_modifier) {
+  this->user = &user;
+
+  this->agi_modifier = agi_modifier;
+  user.agi_modifier += agi_modifier;
+}
+
 Skill::~Skill() {
   message.clear();
   user->agi_modifier = 0;
