@@ -5,6 +5,7 @@
 #include <array>
 #include <nlohmann/json.hpp>
 #include <raylib.h>
+#include "constants.h"
 #include "level.h"
 
 using std::cout, nlohmann::json, std::array, std::ifstream, std::string;
@@ -106,6 +107,6 @@ void Level::setupModel() {
   model.materials[3].maps[MATERIAL_MAP_DIFFUSE].texture = wall_texture;
 }
 
-void Level::draw() {
-  DrawModelEx(model, position, roto_axis, angle, scale, WHITE);
+void Level::draw(Color tint) {
+  DrawModelEx(model, position, roto_axis, angle, scale, tint);
 }

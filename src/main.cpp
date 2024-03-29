@@ -7,6 +7,7 @@ using std::cout;
 
 
 int main() {
+  SetConfigFlags(FLAG_MSAA_4X_HINT);
   InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "DCJam 2024");
   SetTargetFPS(FPS_CAP);
 

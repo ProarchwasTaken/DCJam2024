@@ -2,7 +2,7 @@
 #pragma once
 #include <raylib.h>
 #include <array>
-#include "level.h"
+#include "../level.h"
 
 using std::array;
 

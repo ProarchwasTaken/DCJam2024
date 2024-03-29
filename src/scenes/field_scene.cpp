@@ -1,9 +1,14 @@
 // field_scene.cpp
 #include <raylib.h>
+#include "constants.h"
 #include "game.h"
 
 
 void Game::fieldUpdate() {
+  if (IsKeyPressed(KEY_B)) {
+    startBattle();
+  }
+
   field_player->inputCheck();
   field_player->update();
 }
@@ -14,19 +19,20 @@ void Game::fieldDraw() {
     ClearBackground(WHITE);
     BeginMode3D(field_player->camera);
     {
-      level->draw();
+      Color tint;
+      if (game_state == BATTLE) {
+        tint = DARKGRAY;
+      }
+      else {
+        tint = WHITE;
+      }
+      level->draw(tint);
     }
     EndMode3D();
   }
   EndTextureMode();
 
-  hud->draw();
+  hud->drawMainFrame();
+  hud->drawPartyText();
   DrawTexturePro(canvas3D.texture, source, dest, origin, 0, WHITE);
-
-  DrawText(TextFormat("Direction: %03i", field_player->direction), 10, 10,
-           32, GREEN);
-  DrawText(TextFormat("X: %02.00f", field_player->position.x), 10, 40, 32, 
-           GREEN);
-  DrawText(TextFormat("Y: %02.00f", field_player->position.y), 10, 70, 32, 
-           GREEN);
 }
