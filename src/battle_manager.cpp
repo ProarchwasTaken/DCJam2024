@@ -23,6 +23,12 @@ void Game::startBattle() {
   game_state = BATTLE;
 }
 
+void Game::endBattle() {
+  cout << "Show's over!\n";
+  battle_manager->end_battle = false;
+  game_state = FIELD;
+}
+
 
 BattleManager::BattleManager(shared_ptr<Hud> &hud) {
   hud->awaiting_command = &awaiting_command;
@@ -38,6 +44,7 @@ BattleManager::BattleManager(shared_ptr<Hud> &hud) {
     COMMAND_FLEE
   };
 
+  end_battle = false;
   selecting_target = false;
   
   checked_if_dead = false;
@@ -52,10 +59,13 @@ BattleManager::BattleManager(shared_ptr<Hud> &hud) {
 
   finished_turn = false;
   turn_seconds = 2.0f;
+
+  end_seconds = 2.0f;
 }
 
 BattleManager::~BattleManager() {
   enemy_team.clear();
+  turn_order.clear();
 }
 
 void BattleManager::assignPartyList(party_list &party_members) {
@@ -135,7 +145,7 @@ void BattleManager::targetSelectionInput() {
     awaiting_command->get()->status = STANDBY;
     selecting_target = false;
   }
-  else if (IsKeyPressed(KEY_Z)) {
+  else if (IsKeyPressed(KEY_Z) && targeted_enemy->get()->dead == false) {
     assignSkill();
     selecting_target = false;
   }
@@ -155,6 +165,12 @@ void BattleManager::targetSelectionInput() {
 }
 
 void BattleManager::commandPhase() {
+  if (awaiting_command->get()->dead) {
+    cout << "This party member is dying, " 
+            "thus they cannot be given a command.\n";
+    nextAwaitingCommand();
+  }
+
   if (selecting_target == false) {
     commandBarInput();
   }
@@ -172,6 +188,7 @@ void BattleManager::beginActionPhase() {
   phase = PHASE_ACTION;
 
   for (auto enemy : enemy_team) {
+    if (enemy->dead) continue;
     enemy->selectSkill(*player_team);
   }
 
@@ -180,6 +197,7 @@ void BattleManager::beginActionPhase() {
     turn_order.push_back(party_member);
   }
   for (auto enemy : enemy_team) {
+    if (enemy->dead) continue;
     turn_order.push_back(enemy);
   }
 
@@ -207,7 +225,7 @@ void BattleManager::nextTurn() {
   current_turn++;
   if (current_turn == turn_order.end()) {
     cout << "The end of the turn order has been reached.\n";
-    phase = PHASE_END;
+    endPhaseConditons();
     return;
   }
 
@@ -312,6 +330,39 @@ void BattleManager::actionPhase() {
   }
 
   turnSequence(battler);
+}
+
+void BattleManager::endPhaseConditons() {
+  cout << "Checking if the conditions to enter the end phase are met.\n";
+  bool all_enemies_dead = true;
+  for (auto enemy : enemy_team) {
+    if (enemy->dead == false) all_enemies_dead = false;
+  }
+
+  if (all_enemies_dead == false) {
+    beginCommandPhase();
+  }
+  else {
+    enterEndPhase();
+  }
+}
+
+void BattleManager::enterEndPhase() {
+  cout << "Now entering the end phase.\n";
+  text_buffer->append("You survived!");
+
+  phase = PHASE_END;
+  end_timestamp = GetTime();
+}
+
+void BattleManager::endPhase() {
+  float time_elasped = GetTime() - end_timestamp;
+
+  if (time_elasped >= end_seconds) {
+    text_buffer->clear();
+    enemy_team.clear();
+    end_battle = true;
+  }
 }
 
 void BattleManager::drawEnemies() {

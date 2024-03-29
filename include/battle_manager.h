@@ -55,9 +55,14 @@ public:
 
   void actionPhase();
 
+  void endPhaseConditons();
+  void enterEndPhase();
+  void endPhase();
+
   void drawEnemies();
   
   int phase;
+  bool end_battle;
   bool selecting_target;
 
 private:
@@ -88,4 +93,7 @@ private:
 
   float turn_seconds;
   bool finished_turn; 
+
+  float end_seconds;
+  float end_timestamp;
 };

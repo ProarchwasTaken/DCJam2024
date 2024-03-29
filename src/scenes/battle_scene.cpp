@@ -5,6 +5,11 @@
 
 
 void Game::battleUpdate() {
+  if (battle_manager->end_battle) {
+    endBattle();
+    return;
+  }
+
   switch (battle_manager->phase) {
     case PHASE_COMMAND: {
       battle_manager->commandPhase();
@@ -15,7 +20,7 @@ void Game::battleUpdate() {
       break;
     }
     case PHASE_END: {
-      break;
+      battle_manager->endPhase();
     }
   }
 }
@@ -38,6 +43,7 @@ void Game::battleDraw() {
       break;
     }
     case PHASE_END: {
+      hud->drawTextBox();
       break;
     }
   }

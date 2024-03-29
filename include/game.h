@@ -33,6 +33,7 @@ public:
   void draw();
 
   void startBattle();
+  void endBattle();
   
   void titleUpdate();
   void titleDraw();
