@@ -31,6 +31,7 @@ src/battle_system/party_members/sakura.cpp
 src/battle_system/enemies/skeleton.cpp
 src/battle_system/skills/attack.cpp
 src/battle_system/skills/defend.cpp
+src/battle_system/skills/quick_attack.cpp
 include/constants.h
 include/game.h
 include/level.h
@@ -51,6 +52,7 @@ include/battle_system/party_members/sakura.h
 include/battle_system/enemies/skeleton.h
 include/battle_system/skills/attack.h
 include/battle_system/skills/defend.h
+include/battle_system/skills/quick_attack.h
 )
 
 target_compile_options("game" PRIVATE --debug -O0)

@@ -1,7 +1,7 @@
 // defend.cpp
 #include <raylib.h>
-#include "battle_system/battler.h"
 #include "battle_system/skill.h"
+#include "battle_system/battler.h"
 #include "battle_system/skills/defend.h"
 
 

@@ -1,7 +1,7 @@
 // attack.h
 #pragma once
-#include "../battler.h"
 #include "../skill.h"
+#include "../battler.h"
 
 
 class AttackSkill : public Skill {

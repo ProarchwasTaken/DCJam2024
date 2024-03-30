@@ -4,8 +4,8 @@
 #include <string>
 #include <memory>
 #include <list>
-#include "battler.h"
 #include "skill.h"
+#include "battler.h"
 
 using std::string, std::list, std::shared_ptr, std::unique_ptr;
 
