@@ -11,6 +11,9 @@
 
 using std::shared_ptr, std::array, std::string;
 
+#define LEADER_DEAD 0
+#define ENEMIES_DEAD 1
+#define RAN_AWAY 2
 
 /* Handles the battle system. Basically the culmination of all that code
  * I was writing. I feel that 70% of the battle system's functionality
@@ -44,6 +47,7 @@ public:
   void assignSkill();
 
   void beginActionPhase();
+  void resetActionBooleans();
   void nextTurn();
 
   void displayLine1(Battler *battler);
@@ -56,7 +60,7 @@ public:
   void actionPhase();
 
   void endPhaseConditons();
-  void enterEndPhase(bool game_over);
+  void enterEndPhase(int reason);
   void endPhase();
 
   void drawEnemies();
@@ -64,6 +68,7 @@ public:
   int phase;
   bool end_battle;
   bool lost_battle;
+  bool successful_flee;
   bool selecting_target;
 
 private:

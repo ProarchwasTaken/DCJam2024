@@ -12,6 +12,7 @@
 #include "battle_system/enemy_troops.h"
 #include "battle_system/enemies/skeleton.h"
 #include "battle_system/skills/attack.h"
+#include "battle_system/skills/defend.h"
 
 using std::make_shared, std::shared_ptr, std::cout, std::make_unique;
 
@@ -53,6 +54,7 @@ BattleManager::BattleManager(shared_ptr<Hud> &hud) {
 
   end_battle = false;
   lost_battle = false;
+  successful_flee = false;
   selecting_target = false;
   
   checked_if_dead = false;
@@ -94,11 +96,17 @@ void BattleManager::assignSkill() {
   PartyMember *user = awaiting_command->get();
   Enemy *target = targeted_enemy->get();
 
+  user->chosen_skill.reset();
   switch (user->status) {
     case ATTACK: {
       cout << "Assigning AttackSkill to: " << user->name << "\n";
-      user->chosen_skill.reset();
       user->chosen_skill = make_unique<AttackSkill>(*user, *target);
+      break;
+    }
+    case DEFEND: {
+      cout << "Assigning AttackSkill to: " << user->name << "\n";
+      user->chosen_skill = make_unique<DefendSkill>(*user);
+      break;
     }
   }
 
@@ -139,10 +147,22 @@ void BattleManager::commandBarInput() {
   }
 
   if (IsKeyPressed(KEY_Z)) {
+    PartyMember *party_member = awaiting_command->get();
+
     switch (*selected_command) {
       case COMMAND_ATTACK: {
-        awaiting_command->get()->status = ATTACK;
+        party_member->status = ATTACK;
         selecting_target = true;
+        break;
+      }
+      case COMMAND_DEFEND: {
+        party_member->status = DEFEND;
+        assignSkill();
+        break;
+      }
+      case COMMAND_FLEE: {
+        party_member->status = FLEE;
+        nextAwaitingCommand();
       }
     }
   }
@@ -220,8 +240,7 @@ void BattleManager::beginActionPhase() {
   turn_timestamp = GetTime();
 }
 
-void BattleManager::nextTurn() {
-  cout << "Proceeding to next battler in turn order.\n";
+void BattleManager::resetActionBooleans() {
   checked_if_dead = false;
 
   displayed_line1 = false;
@@ -229,6 +248,11 @@ void BattleManager::nextTurn() {
   displayed_line3 = false;
 
   finished_turn = false;
+}
+
+void BattleManager::nextTurn() {
+  cout << "Proceeding to next battler in turn order.\n";
+  resetActionBooleans();
 
   current_turn++;
   if (current_turn == turn_order.end()) {
@@ -241,8 +265,16 @@ void BattleManager::nextTurn() {
 }
 
 void BattleManager::displayLine1(Battler *battler) {
-  cout << battler->chosen_skill->message[0];
-  text_buffer->append(battler->chosen_skill->message[0]);
+  if (battler->status == FLEE) {
+    cout << TextFormat("%s tried to flee,", battler->name.c_str()) 
+      << "\n";
+    text_buffer->append(TextFormat("%s tried to flee,\n\n", 
+                                   battler->name.c_str())); 
+  }
+  else { 
+    cout << battler->chosen_skill->message[0];
+    text_buffer->append(battler->chosen_skill->message[0]);
+  }
 
   if (battler->type == ENEMY) {
     Enemy *enemy = static_cast<Enemy*>(battler);
@@ -256,10 +288,19 @@ void BattleManager::displayLine1(Battler *battler) {
 }
 
 void BattleManager::displayLine2(Battler *battler) {
-  cout << battler->chosen_skill->message[1];
-  text_buffer->append(battler->chosen_skill->message[1]);
+  if (battler->status == FLEE) {
+    int random_number = GetRandomValue(0, 100);
+    if (random_number <= 25) {
+      successful_flee = true;
+    }
+  }
+  else {
+    cout << battler->chosen_skill->message[1];
+    text_buffer->append(battler->chosen_skill->message[1]);
 
-  battler->chosen_skill->applySkill();
+    battler->chosen_skill->applySkill();
+  }
+
   displayed_line2 = true;
 }
 
@@ -295,7 +336,8 @@ void BattleManager::turnSequence(Battler *battler) {
   bool should_display_line2 = (line2_not_displayed && 
     time_elasped >= line1_seconds);
 
-  bool line3_exists = battler->chosen_skill->message.size() == 3;
+  bool line3_exists = (battler->chosen_skill != nullptr && 
+    battler->chosen_skill->message.size() == 3);
 
   bool line3_not_displayed = displayed_line2 && displayed_line3 == false;
 
@@ -331,7 +373,13 @@ void BattleManager::actionPhase() {
     checked_if_dead = true;
   }
 
-  if (finished_turn) {
+  if (successful_flee) {
+    resetActionBooleans();
+    endPhaseConditons();
+    successful_flee = false;
+    return;
+  }
+  else if (finished_turn) {
     cout << "Turn is finished.\n";
     nextTurn();
     return;
@@ -345,16 +393,28 @@ void BattleManager::endPhaseConditons() {
   bool all_enemies_dead = true;
   for (auto enemy : enemy_team) {
     if (enemy->dead == false) all_enemies_dead = false;
+    enemy->def_multiplier = 1.0;
+  }
+
+  for (auto party_member : *player_team) {
+    if (party_member->dead == false) {
+      party_member->status = STANDBY;
+    }
+    party_member->def_multiplier = 1.0;
   }
 
   bool leader_dead = player_team->front()->dead;
   if (leader_dead) {
     cout << "Party leader is dead. The battle is lost.\n";
-    enterEndPhase(true);
+    enterEndPhase(LEADER_DEAD);
   }
   else if (all_enemies_dead) {
     cout << "All enemies are dead. The battle is won!\n";
-    enterEndPhase(false);
+    enterEndPhase(ENEMIES_DEAD);
+  }
+  else if (successful_flee) { 
+    cout << "Detected that a flee attempt is successful!\n";
+    enterEndPhase(RAN_AWAY);
   }
   else {
     cout << "Conditions haven't been met yet. Restarting cycle.\n";
@@ -362,14 +422,22 @@ void BattleManager::endPhaseConditons() {
   }
 }
 
-void BattleManager::enterEndPhase(bool game_over) {
+void BattleManager::enterEndPhase(int reason) {
   cout << "Now entering the end phase.\n";
-  if (game_over) {
-    text_buffer->append("Steve has fallen...");
-    lost_battle = true;
-  }
-  else {
-    text_buffer->append("You survived!");
+  switch (reason) {
+    case LEADER_DEAD: {
+      text_buffer->append("Steve has fallen...");
+      lost_battle = true;
+      break;
+    }
+    case ENEMIES_DEAD: {
+      text_buffer->append("You survived!");
+      break;
+    }
+    case RAN_AWAY: {
+      text_buffer->append("You successfully ran away!");
+      break;
+    }
   }
 
   phase = PHASE_END;

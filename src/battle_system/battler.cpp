@@ -20,7 +20,9 @@ Battler::Battler(
   sp = max_sp;
 
   attack = atk;
+
   defense = def;
+  def_multiplier = 1.0f;
 
   agility = agi;
   agi_modifier = 0;
@@ -44,6 +46,10 @@ const char *Battler::getStatusString() {
     }
     case DEFEND: {
       status_string = "Defend";
+      break;
+    }
+    case FLEE: {
+      status_string = "FLEE";
       break;
     }
     case DYING: {

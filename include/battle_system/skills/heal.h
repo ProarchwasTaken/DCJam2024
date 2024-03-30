@@ -1,16 +1,15 @@
-// attack.h
+// heal.h
 #pragma once
 #include "../skill.h"
 #include "../battler.h"
 
 
-class AttackSkill : public Skill {
+class HealSkill : public Skill {
 public:
-  AttackSkill(Battler &user, Battler &target);
+  HealSkill(Battler &user, battler_list &user_team);
 
   void calulation();
   void applySkill();
-
 private:
-  int damage_magitude;
+  float heal_magnitude;
 };

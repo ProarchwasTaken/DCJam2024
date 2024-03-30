@@ -1,5 +1,6 @@
 // skeleton.cpp
 #include <raylib.h>
+#include <vector>
 #include <memory>
 #include "battle_system/constants.h"
 #include "battle_system/enemy.h"
@@ -7,7 +8,7 @@
 #include "battle_system/party_members.h"
 #include "battle_system/skills/attack.h"
 
-using std::make_unique;
+using std::make_unique, std::vector, std::shared_ptr;
 
 
 Skeleton::Skeleton(Vector2 position):
@@ -19,6 +20,18 @@ Skeleton::Skeleton(Vector2 position):
 }
 
 void Skeleton::selectSkill(party_list &player_team) {
-  chosen_skill = make_unique<AttackSkill>(*this, *player_team.front());
+  vector<shared_ptr<PartyMember>> alive_members;
+
+  for (auto member : player_team) {
+    if (member->dead == false) {
+      alive_members.push_back(member);
+    }
+  }
+
+  int alive_count = alive_members.size();
+  int random_member = GetRandomValue(0, alive_count - 1);
+
+  chosen_skill = make_unique<AttackSkill>(*this, 
+                                          *alive_members[random_member]);
   status = ATTACK;
 }

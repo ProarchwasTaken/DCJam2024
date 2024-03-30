@@ -5,7 +5,6 @@
 #include <array>
 #include <nlohmann/json.hpp>
 #include <raylib.h>
-#include "constants.h"
 #include "level.h"
 
 using std::cout, nlohmann::json, std::array, std::ifstream, std::string;

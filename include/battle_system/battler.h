@@ -4,9 +4,11 @@
 #include <memory>
 #include <list>
 #include "common.h"
-#include "skill.h"
 
 using std::string, std::list, std::shared_ptr, std::unique_ptr;
+typedef list<shared_ptr<Battler>> battler_list;
+#include "skill.h"
+
 
 
 /* A "Battler" could be considered a generalized term for a participant
@@ -42,10 +44,11 @@ struct Battler {
   int max_sp;
 
   int attack;
+
   int defense;
+  float def_multiplier;
 
   int agility;
   int agi_modifier;
 };
 
-typedef list<shared_ptr<Battler>> battler_list;

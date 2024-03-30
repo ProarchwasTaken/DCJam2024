@@ -30,6 +30,10 @@ src/battle_system/party_members/ren.cpp
 src/battle_system/party_members/sakura.cpp
 src/battle_system/enemies/skeleton.cpp
 src/battle_system/skills/attack.cpp
+src/battle_system/skills/defend.cpp
+src/battle_system/skills/quick_attack.cpp
+src/battle_system/skills/laser_beam.cpp
+src/battle_system/skills/heal.cpp
 include/constants.h
 include/game.h
 include/level.h
@@ -49,6 +53,10 @@ include/battle_system/party_members/ren.h
 include/battle_system/party_members/sakura.h
 include/battle_system/enemies/skeleton.h
 include/battle_system/skills/attack.h
+include/battle_system/skills/defend.h
+include/battle_system/skills/quick_attack.h
+include/battle_system/skills/laser_beam.h
+include/battle_system/skills/heal.h
 )
 
 target_compile_options("game" PRIVATE --debug -O0)
