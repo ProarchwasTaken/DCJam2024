@@ -1,4 +1,5 @@
 // quick_attack.h
+#pragma once
 #include "../skill.h"
 #include "../battler.h"
 
