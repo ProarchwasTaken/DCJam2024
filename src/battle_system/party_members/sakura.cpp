@@ -8,6 +8,7 @@
 Sakura::Sakura() : PartyMember("Sakura", 45, 15, 10, 8, 3) {
   special_skill = SKILL_HEAL;
   sp_cost = 5;
+  need_target = false;
 
   command_portrait = LoadTexture("graphics/sprites/portrait3.png");
 }

@@ -14,13 +14,12 @@ Skill(user, user_team, -1) {
 
 void HealSkill::calulation() {
   message.push_back(TextFormat("%s casts Heal!\n\n", user->name.c_str()));
-  message.push_back(TextFormat("Party healed for %i HP!",
-                               heal_magnitude));
+  message.push_back(TextFormat("Party healed!\n", heal_magnitude));
 }
 
 void HealSkill::applySkill() {
   for (auto member : *user_team) {
-    member->hp = heal_magnitude;
+    member->hp += heal_magnitude;
 
     if (member->dead) {
       member->dead = false;

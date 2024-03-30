@@ -7,6 +7,7 @@
 Steve::Steve() : PartyMember("Steve", 30, 20, 8, 5, 6) {
   special_skill = SKILL_QUICKATTACK;
   sp_cost = 3;
+  need_target = true;
 
   command_portrait = LoadTexture("graphics/sprites/portrait1.png");
 }

@@ -13,6 +13,9 @@
 #include "battle_system/enemies/skeleton.h"
 #include "battle_system/skills/attack.h"
 #include "battle_system/skills/defend.h"
+#include "battle_system/skills/quick_attack.h"
+#include "battle_system/skills/laser_beam.h"
+#include "battle_system/skills/heal.h"
 
 using std::make_shared, std::shared_ptr, std::cout, std::make_unique;
 
@@ -99,18 +102,44 @@ void BattleManager::assignSkill() {
   user->chosen_skill.reset();
   switch (user->status) {
     case ATTACK: {
-      cout << "Assigning AttackSkill to: " << user->name << "\n";
+      cout << "Assigning Attack skill to: " << user->name << "\n";
       user->chosen_skill = make_unique<AttackSkill>(*user, *target);
       break;
     }
     case DEFEND: {
-      cout << "Assigning AttackSkill to: " << user->name << "\n";
+      cout << "Assigning Defend skill to: " << user->name << "\n";
       user->chosen_skill = make_unique<DefendSkill>(*user);
+      break;
+    }
+    case SKILL: {
+      assignSpecialSkill(*user, *target);
+      user->sp -= user->sp_cost;
       break;
     }
   }
 
   nextAwaitingCommand();
+}
+
+void BattleManager::assignSpecialSkill(PartyMember &user, Enemy &target) {
+  switch (user.special_skill) {
+    case SKILL_QUICKATTACK: {
+      cout << "Assigning Quick Attack skill to: " << user.name << "\n";
+      user.chosen_skill = make_unique<QuickAttackSkill>(user, target);
+      break;
+    }
+    case SKILL_LASERBEAM: {
+      cout << "Assigning Laser Beam skill to: " << user.name << "\n";
+      user.chosen_skill = make_unique<LaserBeamSkill>(user, target);
+      break;
+    }
+    case SKILL_HEAL: {
+      cout << "Assigning Heal skill to: " << user.name << "\n";
+
+      auto user_team = reinterpret_cast<battler_list*>(player_team);
+      user.chosen_skill = make_unique<HealSkill>(user, *user_team);
+    }
+  }
 }
 
 void BattleManager::nextAwaitingCommand() {
@@ -155,6 +184,20 @@ void BattleManager::commandBarInput() {
         selecting_target = true;
         break;
       }
+      case COMMAND_SKILL: {
+        if (party_member->sp >= party_member->sp_cost){
+          party_member->status = SKILL;
+
+          if (party_member->need_target) {
+            selecting_target = true;
+          }
+          else {
+            assignSkill();
+          }
+        }
+        
+        break;
+      }
       case COMMAND_DEFEND: {
         party_member->status = DEFEND;
         assignSkill();
@@ -163,6 +206,7 @@ void BattleManager::commandBarInput() {
       case COMMAND_FLEE: {
         party_member->status = FLEE;
         nextAwaitingCommand();
+        break;
       }
     }
   }
@@ -176,6 +220,7 @@ void BattleManager::targetSelectionInput() {
   else if (IsKeyPressed(KEY_Z) && targeted_enemy->get()->dead == false) {
     assignSkill();
     selecting_target = false;
+    return;
   }
 
   if (IsKeyPressed(KEY_RIGHT)) {
