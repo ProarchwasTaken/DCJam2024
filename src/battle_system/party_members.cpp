@@ -21,3 +21,7 @@ PartyMember::~PartyMember() {
     chosen_skill.reset();
   }
 }
+
+bool PartyMember::canUseSkill() {
+  return (sp > sp_cost);
+}

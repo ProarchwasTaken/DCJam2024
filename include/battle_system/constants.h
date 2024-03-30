@@ -10,6 +10,10 @@
 #define COMMAND_DEFEND 2
 #define COMMAND_FLEE 3
 
+#define SKILL_QUICKATTACK 0
+#define SKILL_LASERBEAM 1
+#define SKILL_HEAL 2
+
 #define PARTY_MEMBER 0
 #define ENEMY 1
 

@@ -27,7 +27,11 @@ public:
   );
   ~PartyMember();
 
+  bool canUseSkill();
+
   Texture command_portrait;
+  int special_skill;
+  int sp_cost;
 };
 
 
