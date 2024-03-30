@@ -222,6 +222,7 @@ void BattleManager::beginActionPhase() {
 
   turn_order.clear();
   for (auto party_member : *player_team) {
+    if (party_member->dead) continue;
     turn_order.push_back(party_member);
   }
   for (auto enemy : enemy_team) {
