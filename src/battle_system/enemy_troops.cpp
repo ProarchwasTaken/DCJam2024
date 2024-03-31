@@ -17,3 +17,23 @@ TroopTwoSkeleton::TroopTwoSkeleton() {
   troop_info.push_front(SkeletonInfo((Vector2){285, 225}));
   troop_info.push_front(SkeletonInfo((Vector2){490, 225}));
 }
+
+TroopOneGolem::TroopOneGolem() {
+  troop_info.push_front(GolemInfo((Vector2){400, 255}));
+}
+
+TroopTwoGolem::TroopTwoGolem() {
+  troop_info.push_front(GolemInfo((Vector2){285, 225}));
+  troop_info.push_front(GolemInfo((Vector2){490, 225}));
+}
+
+TroopVarietyOne::TroopVarietyOne() {
+  troop_info.push_front(SkeletonInfo((Vector2){285, 225}));
+  troop_info.push_front(GolemInfo((Vector2){490, 225}));
+}
+
+TroopVarietyTwo::TroopVarietyTwo() {
+  troop_info.push_front(SkeletonInfo((Vector2){250, 225}));
+  troop_info.push_front(GolemInfo((Vector2){400, 225}));
+  troop_info.push_front(SkeletonInfo((Vector2){550, 225}));
+}

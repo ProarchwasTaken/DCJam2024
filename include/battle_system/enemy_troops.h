@@ -45,3 +45,19 @@ struct TroopOneSkeleton : public EnemyTroop {
 struct TroopTwoSkeleton : public EnemyTroop {
   TroopTwoSkeleton();
 };
+
+struct TroopOneGolem : public EnemyTroop {
+  TroopOneGolem();
+};
+
+struct TroopTwoGolem : public EnemyTroop {
+  TroopTwoGolem();
+};
+
+struct TroopVarietyOne : public EnemyTroop {
+  TroopVarietyOne();
+};
+
+struct TroopVarietyTwo : public EnemyTroop {
+  TroopVarietyTwo();
+};
