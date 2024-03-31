@@ -13,7 +13,7 @@ QuickAttackSkill::QuickAttackSkill(Battler &user, Battler &target):
 }
 
 void QuickAttackSkill::calulation() {
-  message.push_back(TextFormat("%s tries a quick attack!\n\n",
+  message.push_back(TextFormat("%s uses quick attack!\n\n",
                                user->name.c_str()));
 
   int random_number = GetRandomValue(1, 100);
