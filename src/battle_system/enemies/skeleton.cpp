@@ -37,12 +37,12 @@ void Skeleton::selectSkill(party_list &player_team) {
     chosen_skill = make_unique<AttackSkill>(
       *this, *alive_members[random_member]
     );
-    status = ATTACK;
   }
   else if (random_skill == 2) {
     chosen_skill = make_unique<QuickAttackSkill>(
       *this, *alive_members[random_member]
     );
-    status = SKILL;
   }
+
+  status = ATTACK;
 }

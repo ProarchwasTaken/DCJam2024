@@ -15,7 +15,7 @@ using std::make_unique, std::vector, std::shared_ptr;
 Golem::Golem(Vector2 position):Enemy("Golem", position, 30, 10, 8, 8, 3) {
   idle_sprite = LoadTexture("graphics/sprites/golem.png");
   attack_sprite = LoadTexture("graphics/sprites/golem_attack.png");
-  has_attack_sprite = false;
+  has_attack_sprite = true;
 }
 
 void Golem::selectSkill(party_list &player_team) {
@@ -35,12 +35,11 @@ void Golem::selectSkill(party_list &player_team) {
     chosen_skill = make_unique<AttackSkill>(
       *this, *alive_members[random_member]
     );
-    status = ATTACK;
   }
   else if (random_skill == 2) {
     chosen_skill = make_unique<LaserBeamSkill>(
       *this, *alive_members[random_member]
     );
-    status = SKILL;
   }
+  status = ATTACK;
 }
