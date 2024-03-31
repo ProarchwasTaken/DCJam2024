@@ -29,6 +29,7 @@ src/battle_system/party_members/steve.cpp
 src/battle_system/party_members/ren.cpp
 src/battle_system/party_members/sakura.cpp
 src/battle_system/enemies/skeleton.cpp
+src/battle_system/enemies/golem.cpp
 src/battle_system/skills/attack.cpp
 src/battle_system/skills/defend.cpp
 src/battle_system/skills/quick_attack.cpp
@@ -52,6 +53,7 @@ include/battle_system/party_members/steve.h
 include/battle_system/party_members/ren.h
 include/battle_system/party_members/sakura.h
 include/battle_system/enemies/skeleton.h
+include/battle_system/enemies/golem.h
 include/battle_system/skills/attack.h
 include/battle_system/skills/defend.h
 include/battle_system/skills/quick_attack.h

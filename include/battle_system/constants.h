@@ -25,3 +25,4 @@
 #define DYING 5
 
 #define SKELETON 0
+#define GOLEM 1

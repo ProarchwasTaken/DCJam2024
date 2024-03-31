@@ -11,6 +11,7 @@
 #include "battle_system/party_members.h"
 #include "battle_system/enemy_troops.h"
 #include "battle_system/enemies/skeleton.h"
+#include "battle_system/enemies/golem.h"
 #include "battle_system/skills/attack.h"
 #include "battle_system/skills/defend.h"
 
@@ -87,6 +88,9 @@ void BattleManager::createEnemyList(EnemyTroop enemy_troop) {
     switch (enemy_info.enemy) {
       case SKELETON: {
         enemy_team.push_front(make_shared<Skeleton>(enemy_info.position));
+      }
+      case GOLEM: {
+        enemy_team.push_front(make_shared<Golem>(enemy_info.position));
       }
     }
   }

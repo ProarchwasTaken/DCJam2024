@@ -18,6 +18,10 @@ struct SkeletonInfo : public EnemyInfo {
   SkeletonInfo(Vector2 position);
 };
 
+struct GolemInfo : public EnemyInfo {
+  GolemInfo(Vector2 position);
+};
+
 
 /* Contains information for an entire group of enemies. Data is used by
  * the BattleManager to create a whole team on enemies. Structs that

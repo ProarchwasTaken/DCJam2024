@@ -7,6 +7,7 @@
 #include "battle_system/enemies/skeleton.h"
 #include "battle_system/party_members.h"
 #include "battle_system/skills/attack.h"
+#include "battle_system/skills/quick_attack.h"
 
 using std::make_unique, std::vector, std::shared_ptr;
 
@@ -30,8 +31,18 @@ void Skeleton::selectSkill(party_list &player_team) {
 
   int alive_count = alive_members.size();
   int random_member = GetRandomValue(0, alive_count - 1);
+  int random_skill = GetRandomValue(1, 2);
 
-  chosen_skill = make_unique<AttackSkill>(*this, 
-                                          *alive_members[random_member]);
-  status = ATTACK;
+  if (random_skill == 1) {
+    chosen_skill = make_unique<AttackSkill>(
+      *this, *alive_members[random_member]
+    );
+    status = ATTACK;
+  }
+  else if (random_skill == 2) {
+    chosen_skill = make_unique<QuickAttackSkill>(
+      *this, *alive_members[random_member]
+    );
+    status = SKILL;
+  }
 }
