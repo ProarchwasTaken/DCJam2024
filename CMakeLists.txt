@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER clang++)
+set(CMAKE_CXX_COMPILER g++)
 
 project("game")
 
@@ -61,7 +61,7 @@ include/battle_system/skills/laser_beam.h
 include/battle_system/skills/heal.h
 )
 
-target_compile_options("game" PRIVATE --debug -O0)
+target_compile_options("game" PRIVATE -mwindows -O3)
 target_link_libraries("game" PRIVATE
 -lraylib 
 -lopengl32 
