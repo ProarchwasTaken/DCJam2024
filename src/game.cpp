@@ -5,6 +5,7 @@
 #include "constants.h"
 #include "game.h"
 #include "level.h"
+#include "battle_system/enemy_troops.h"
 #include "field/field_player.h"
 #include "battle_manager.h"
 
@@ -19,6 +20,13 @@ Game::Game() {
   source = {0, 0, WINDOW_WIDTH, -WINDOW_HEIGHT};
   dest = {CANVAS_X, CANVAS_Y, CANVAS_WIDTH, CANVAS_HEIGHT};
   origin = {0, 0};
+
+  troop_pool[0] = TroopOneSkeleton();
+  troop_pool[1] = TroopTwoSkeleton();
+  troop_pool[2] = TroopOneGolem();
+  troop_pool[3] = TroopTwoGolem();
+  troop_pool[4] = TroopVarietyOne();
+  troop_pool[5] = TroopVarietyTwo();
 
   level = make_unique<Level>();
   hud = make_shared<Hud>(main_font);

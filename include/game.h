@@ -1,15 +1,17 @@
 // game.h
 #pragma once
 #include <cstdint>
+#include <array>
 #include <memory>
 #include <raylib.h>
 #include "level.h"
 #include "battle_system/party.h"
+#include "battle_system/enemy_troops.h"
 #include "hud.h"
 #include "battle_manager.h"
 #include "field/field_player.h"
 
-using std::unique_ptr, std::shared_ptr;
+using std::unique_ptr, std::shared_ptr, std::array;
 
 #define CANVAS_X 56
 #define CANVAS_Y 53
@@ -62,6 +64,7 @@ private:
   Vector2 origin;
 
   unique_ptr<BattleManager> battle_manager;
+  array<EnemyTroop, 6> troop_pool;
 
   unique_ptr<Level> level;
   unique_ptr<Party> player_party;
