@@ -24,7 +24,7 @@ TroopTwoSkeleton::TroopTwoSkeleton() {
 }
 
 TroopOneGolem::TroopOneGolem() {
-  troop_info.push_front(GolemInfo((Vector2){400, 255}));
+  troop_info.push_front(GolemInfo((Vector2){400, 225}));
 }
 
 TroopTwoGolem::TroopTwoGolem() {
