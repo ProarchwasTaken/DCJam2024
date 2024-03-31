@@ -61,7 +61,8 @@ include/battle_system/skills/laser_beam.h
 include/battle_system/skills/heal.h
 )
 
-target_compile_options("game" PRIVATE -mwindows -O3)
+target_link_options("game" PRIVATE -mwindows)
+target_compile_options("game" PRIVATE -O3)
 target_link_libraries("game" PRIVATE
 -lraylib 
 -lopengl32 
