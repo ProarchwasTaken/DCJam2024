@@ -23,7 +23,9 @@ using std::make_shared, std::shared_ptr, std::cout, std::make_unique;
 
 void Game::startBattle() {
   cout << "Battle Time!\n";
-  battle_manager->createEnemyList(TroopVarietyOne());
+  int random_index = GetRandomValue(0, 5);
+
+  battle_manager->createEnemyList(troop_pool[random_index]);
   battle_manager->beginCommandPhase();
   game_state = BATTLE;
 }
