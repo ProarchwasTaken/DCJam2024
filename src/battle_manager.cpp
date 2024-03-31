@@ -20,7 +20,7 @@ using std::make_shared, std::shared_ptr, std::cout, std::make_unique;
 
 void Game::startBattle() {
   cout << "Battle Time!\n";
-  battle_manager->createEnemyList(TroopTwoSkeleton());
+  battle_manager->createEnemyList(TroopVarietyOne());
   battle_manager->beginCommandPhase();
   game_state = BATTLE;
 }
@@ -88,9 +88,11 @@ void BattleManager::createEnemyList(EnemyTroop enemy_troop) {
     switch (enemy_info.enemy) {
       case SKELETON: {
         enemy_team.push_front(make_shared<Skeleton>(enemy_info.position));
+        break;
       }
       case GOLEM: {
         enemy_team.push_front(make_shared<Golem>(enemy_info.position));
+        break;
       }
     }
   }
