@@ -8,6 +8,7 @@
 Ren::Ren() : PartyMember("Ren", 25, 25, 6, 3, 8) {
   special_skill = SKILL_LASERBEAM;
   sp_cost = 8;
+  need_target = true;
 
   command_portrait = LoadTexture("graphics/sprites/portrait2.png");
 }

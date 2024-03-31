@@ -28,6 +28,7 @@ public:
   ~PartyMember();
 
   bool canUseSkill();
+  bool need_target;
 
   Texture command_portrait;
   int special_skill;

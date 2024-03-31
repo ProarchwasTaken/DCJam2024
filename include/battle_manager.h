@@ -45,6 +45,7 @@ public:
   void commandPhase();
   void nextAwaitingCommand();
   void assignSkill();
+  void assignSpecialSkill(PartyMember &user, Enemy &target);
 
   void beginActionPhase();
   void resetActionBooleans();
