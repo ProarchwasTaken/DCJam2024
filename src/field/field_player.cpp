@@ -42,7 +42,7 @@ void FieldPlayer::setSpawnPosition() {
  * The camera's position and target depends on the player's position.
  * Albeit with some modifications.*/
 void FieldPlayer::setUpCamera() {
-  camera.position = (Vector3){position.x + 0.5f, 0.5f, position.y};
+  camera.position = (Vector3){position.x + 0.5f, 0.5, position.y};
   camera.up = (Vector3){0, 1, 0};
   camera.fovy = 60;
   camera.target = (Vector3){position.x + 0.5f, 0.5f, position.y + 0.5f};

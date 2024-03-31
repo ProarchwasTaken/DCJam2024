@@ -5,8 +5,8 @@
 
 using std::array;
 
-#define MAP_WIDTH 7
-#define MAP_HEIGHT 7
+#define MAP_WIDTH 20
+#define MAP_HEIGHT 20
 #define TOTAL_TILES (MAP_WIDTH * MAP_HEIGHT)
 
 #define NOTHING 0
@@ -43,4 +43,5 @@ private:
   Texture floor_texture;
   Texture wall_texture;
   Texture ceiling_texture;
+  Texture exit_texture;
 };

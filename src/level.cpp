@@ -13,7 +13,7 @@ using std::cout, nlohmann::json, std::array, std::ifstream, std::string;
 Level::Level() {
   position = (Vector3){0, 0, 0};
   roto_axis = (Vector3){0, 1, 0};
-  angle = -90;
+  angle = 180;
   scale = (Vector3){1, 1, 1};
 
   setupModel();
@@ -27,6 +27,7 @@ Level::~Level() {
   UnloadTexture(floor_texture);
   UnloadTexture(wall_texture);
   UnloadTexture(ceiling_texture);
+  UnloadTexture(exit_texture);
 }
 
 /* For getting the collision array from map_data.json and return it.
@@ -99,11 +100,13 @@ void Level::setupModel() {
   ceiling_texture = LoadTexture("graphics/textures/ceiling1.png");
 
   wall_texture = LoadTexture("graphics/textures/wall1.png");
+  exit_texture = LoadTexture("graphics/textures/exit_doorway.png");
 
   model = LoadModel("graphics/models/level.glb");
   model.materials[1].maps[MATERIAL_MAP_DIFFUSE].texture = floor_texture;
-  model.materials[2].maps[MATERIAL_MAP_DIFFUSE].texture = ceiling_texture;
-  model.materials[3].maps[MATERIAL_MAP_DIFFUSE].texture = wall_texture;
+  model.materials[2].maps[MATERIAL_MAP_DIFFUSE].texture = wall_texture;
+  model.materials[3].maps[MATERIAL_MAP_DIFFUSE].texture = ceiling_texture;
+  model.materials[4].maps[MATERIAL_MAP_DIFFUSE].texture = exit_texture;
 }
 
 void Level::draw(Color tint) {
