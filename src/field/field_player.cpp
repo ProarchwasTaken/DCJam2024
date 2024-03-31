@@ -16,6 +16,10 @@ FieldPlayer::FieldPlayer(lv_array &level_grid) {
   reached_end_trigger = false;
   end_game = false;
 
+  battle_time = false;
+  grace_counter = 5;
+  encounter_chance = 10;
+
   moving = false;
   move_percentage = 0.0;
 
@@ -60,6 +64,20 @@ void FieldPlayer::update() {
   if (rotating) rotation();
 }
 
+void FieldPlayer::encounterCheck() {
+  if (grace_counter > 0) {
+    return;
+  }
+
+  int random_number = GetRandomValue(0, 100);
+  int final_value = random_number + grace_counter;
+  
+  if (final_value <= encounter_chance) {
+    grace_counter = 10;
+    battle_time = true;
+  }
+}
+
 /* Called each frame of which the player should be moving forward. 
  * Basically, the camera will move forward based on a percentage 
  * difference. The player stops moving when the percentage reaches 100*/
@@ -76,6 +94,10 @@ void FieldPlayer::movement() {
     
     if (reached_end_trigger) {
       end_game = true;
+    }
+    else {
+      grace_counter -= 1;
+      encounterCheck();
     }
   }
   else {

@@ -5,13 +5,14 @@
 
 
 void Game::fieldUpdate() {
-  if (IsKeyPressed(KEY_B)) {
-    startBattle();
-  }
   field_player->inputCheck();
   field_player->update();
 
-  if (field_player->end_game) {
+  if (field_player->battle_time) {
+    startBattle();
+    field_player->battle_time = false;
+  }
+  else if (field_player->end_game) {
     endGame();
   }
 }

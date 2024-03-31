@@ -35,6 +35,7 @@ public:
   void update();
 
   void inputCheck();
+  void encounterCheck();
 
   void rotation();
   void movement();
@@ -46,11 +47,17 @@ public:
 
   bool rotating;
   int moving;
+
   bool is_idle;
   bool end_game;
+
+  bool battle_time;
 private:
   lv_array *level_grid;
   bool reached_end_trigger;
+
+  int grace_counter;
+  int encounter_chance;
 
   float current_angle;
 
