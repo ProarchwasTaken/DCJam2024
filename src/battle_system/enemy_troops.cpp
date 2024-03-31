@@ -9,6 +9,11 @@ SkeletonInfo::SkeletonInfo(Vector2 position) {
   this->position = position;
 }
 
+GolemInfo::GolemInfo(Vector2 position) {
+  enemy = GOLEM;
+  this->position = position;
+}
+
 TroopOneSkeleton::TroopOneSkeleton() {
   troop_info.push_front(SkeletonInfo((Vector2){400, 225}));
 }
