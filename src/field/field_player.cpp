@@ -13,6 +13,9 @@ FieldPlayer::FieldPlayer(lv_array &level_grid) {
   is_idle = true;
   rotating = false;
 
+  reached_end_trigger = false;
+  end_game = false;
+
   moving = false;
   move_percentage = 0.0;
 
@@ -70,6 +73,10 @@ void FieldPlayer::movement() {
   if (new_percentage == 1.0) {
     moving = false;
     move_percentage = 0.0;
+    
+    if (reached_end_trigger) {
+      end_game = true;
+    }
   }
   else {
     move_percentage = new_percentage;
@@ -153,6 +160,9 @@ bool FieldPlayer::canMove() {
 
   if (tile_value != SOLID_WALL) {
     position = new_pos;
+    if (tile_value == END_TRIGGER) {
+      reached_end_trigger = true;
+    }
     return true;
   }
   else {

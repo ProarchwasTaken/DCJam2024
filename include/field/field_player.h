@@ -47,8 +47,10 @@ public:
   bool rotating;
   int moving;
   bool is_idle;
+  bool end_game;
 private:
   lv_array *level_grid;
+  bool reached_end_trigger;
 
   float current_angle;
 

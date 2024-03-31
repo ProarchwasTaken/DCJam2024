@@ -8,9 +8,12 @@ void Game::fieldUpdate() {
   if (IsKeyPressed(KEY_B)) {
     startBattle();
   }
-
   field_player->inputCheck();
   field_player->update();
+
+  if (field_player->end_game) {
+    endGame();
+  }
 }
 
 void Game::fieldDraw() {

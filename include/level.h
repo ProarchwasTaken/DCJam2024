@@ -12,6 +12,7 @@ using std::array;
 #define NOTHING 0
 #define SOLID_WALL 2
 #define PLAYER 3
+#define END_TRIGGER 4
 
 typedef array<array<int, MAP_WIDTH>, MAP_HEIGHT> lv_array;
 

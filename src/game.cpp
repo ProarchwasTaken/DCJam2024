@@ -62,6 +62,12 @@ void Game::gameover() {
   game_state = LOSE;
 }
 
+void Game::endGame() {
+  cout << "You reached the exit doorway!";
+  cleanupGameObjects();
+  game_state = TITLE;
+}
+
 /* Called when the player presses the enter key on the title screen.
  * Important to make sure all the game's elements are initialized.*/
 void Game::setupGameObjects() {

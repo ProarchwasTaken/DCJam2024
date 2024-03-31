@@ -33,6 +33,7 @@ public:
   void draw();
 
   void startGame();
+  void endGame();
   void gameover();
 
   void startBattle();
