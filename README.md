@@ -22,7 +22,8 @@ worked with other people on a game before.
 
 # final thoughts
 
-HI everyone this is saver. I worked on the art and texures for the game jam, it was bit hard trying to draw things outside my comfrot zone, but was really fun. Made me draw monsters for the game jam that though that wouldn't come out looking good, but really happy with how they look and the texutres were challenging and fun to draw/paint. Had lots of fun working it and this being my first game jam, I'm really proud of myslef and Tyler, Wouldn't be able to do this without there help. They worked on the coding and framework for the game and treid new things as well. was really good time working with them on this.
+## the_saver1
+HI everyone this is saver. I worked on the art and textures for the game jam, it was bit hard trying to draw things outside my comfort zone, but was really fun. Made me draw monsters for the game jam that though that wouldn't come out looking good, but really happy with how they look and the textures were challenging and fun to draw/paint. Had lots of fun working it and this being my first game jam, I'm really proud of myself and Tyler, Wouldn't be able to do this without there help. They worked on the coding and framework for the game and tried new things as well. was really good time working with them on this.
 
 # Credits
 **Programmer** - Tyler Dillard - My [Itch.io](https://lorenarc.itch.io/), [Gamejolt](https://gamejolt.com/@LorenArc), and [Twitter](https://twitter.com/Tyler37961642)
