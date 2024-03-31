@@ -20,10 +20,36 @@ this one. At least it would be a good learning experience as I never
 worked with other people on a game before.
 
 
-# final thoughts
+# Final Thoughts
 
 ## the_saver1
 HI everyone this is saver. I worked on the art and textures for the game jam, it was bit hard trying to draw things outside my comfort zone, but was really fun. Made me draw monsters for the game jam that though that wouldn't come out looking good, but really happy with how they look and the textures were challenging and fun to draw/paint. Had lots of fun working it and this being my first game jam, I'm really proud of myself and Tyler, Wouldn't be able to do this without there help. They worked on the coding and framework for the game and tried new things as well. was really good time working with them on this.
+
+## Tyler Dillard
+Hey guys, this is Tyler again. At the time I'm typing this, it's 11:12 PM
+EST, and I just finished the last feature needed before releasing the
+game. In hindsight, having to program a dungeon crawler (Which is something 
+that's debatably mechanically complex.) in under 9 DAYS is absolutely 
+WILD!
+
+Considering the fact that I used a framework to make the game, and never 
+had much experience with programming battle systems or 3D, we had to 
+narrow our scope and cut a lot of things in order get finish the game
+before the deadline. Like I said in the beginning, we really had to lock
+in. I had to put my main project at the time on hold to put my full focus
+into the project.
+
+I know I'm sort of parroting what she said but, we had a good time. Both
+of us played very important roles in the making of the game. Thanks to her
+taking on the responsibility of drawing the art, I was able to put my
+full attention to programming. Which believe is a important factor that
+allowed us to finished. If I was alone, I'd probably burn myself out.
+
+The game itself is alright. It's certainly one of the dungeon crawlers of
+all time, and honestly that's okay. I'm still proud of it nonetheless, and
+it would be good project to add to our portfolios. If you ever took the
+time to play this game, thank you. I would also appreciate it if you
+check out the main project if you have the chance.
 
 # Credits
 **Programmer** - Tyler Dillard - My [Itch.io](https://lorenarc.itch.io/), [Gamejolt](https://gamejolt.com/@LorenArc), and [Twitter](https://twitter.com/Tyler37961642)
